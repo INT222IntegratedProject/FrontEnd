@@ -25,6 +25,12 @@ const routes = [{
             import ('../auth/Register.vue')
     },
     {
+        path: '/show/:id',
+        name: 'Modal',
+        component:()=> import('../components/Product/ShowProduct.vue'),
+        props: true
+      },
+    {
         path: '/product',
         name: 'Product',
         component: () =>
