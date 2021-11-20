@@ -30,6 +30,12 @@ const routes = [{
         component:()=> import('../components/Product/ShowProduct.vue'),
         props: true
       },
+      {
+        path: '/edit/:id',
+        name: 'Edit',
+        component:()=> import('../components/Product/BasedEditProduct.vue'),
+        props: true
+      },
     {
         path: '/product',
         name: 'Product',
@@ -71,6 +77,24 @@ const routes = [{
         name: 'Men',
         component: () =>
             import ('../components/Product/GenderProduct/MaleProduct.vue')
+    },
+    {
+        path: '/product/Uniqlo',
+        name: 'Uniqlo',
+        component: () =>
+            import ('../components/Product/BrandProduct/Uniqlo.vue')
+    },
+    {
+        path: '/product/HM',
+        name: 'HM',
+        component: () =>
+            import ('../components/Product/BrandProduct/HM.vue')
+    },
+    {
+        path: '/product/Zara',
+        name: 'Zara',
+        component: () =>
+            import ('../components/Product/BrandProduct/Zara.vue')
     },
     {
         path: '/userlist',
