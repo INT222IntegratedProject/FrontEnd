@@ -13,7 +13,7 @@
             <p class="mt-2 text-gray-400">
               Formal shirts in diverse cuts, color and materials suitable for official gathering.
             </p>
-            <a href="/product">
+            <a href="/product/Shirt">
               <button
                 class="
                   flex
@@ -67,7 +67,7 @@
               <p class="mt-2 text-gray-400">
                Comfortable to wear everyday. Match with every lifestyle!
               </p>
-              <a href="/product">
+              <a href="/product/T-Shirt">
                 <button
                   class="
                     flex
@@ -120,7 +120,7 @@
               <p class="mt-2 text-gray-400">
                 Sweat collection with comfortable and casual design that can be worn at home and outside.
               </p>
-              <a href="/product">
+              <a href="/product/Sweater">
                 <button
                   class="
                     flex

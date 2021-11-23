@@ -27,15 +27,15 @@
         class="sm:flex sm:justify-center sm:items-center mt-4"
       >
         <div class="flex flex-col sm:flex-row">
-          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="/HM"
+          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="/product/HM"
             >H&M</a
           >
           <a
             class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0"
-            href="/uniqlo"
+            href="/product/Uniqlo"
             >Uniqlo</a
           >
-          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="/zara"
+          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="/product/Zara"
             >Zara</a
           >
         </div>
