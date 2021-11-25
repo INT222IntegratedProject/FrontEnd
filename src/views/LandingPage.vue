@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       productData: [],
-      urlProduct: "http://23.101.19.18:3000/Products/GetProducts",
+      urlProduct: "https://walkincloset.ddns.net/backend/Products/GetProducts",
       allColors: [],
     };
   },
@@ -50,7 +50,7 @@ export default {
         });
     },
     async fetchColors() {
-      const res = await fetch("http://23.101.19.18:3000/Colors/GetColors");
+      const res = await fetch("https://walkincloset.ddns.net/backend/Colors/GetColors");
       const data = await res.json();
       console.log(data);
       return data;

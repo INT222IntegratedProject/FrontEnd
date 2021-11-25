@@ -13,14 +13,20 @@ const routes = [{
             import ('../views/About.vue')
     },
     {
+        path: '/feedback',
+        name: 'feedback',
+        component: () =>
+            import ('../components/Product/Feedback/ShowFeedback.vue')
+    },
+    {
         path: '/login',
-        name: 'Login',
+        name: 'login',
         component: () =>
             import ('../auth/Login.vue')
     },
     {
         path: '/register',
-        name: 'Register',
+        name: 'register',
         component: () =>
             import ('../auth/Register.vue')
     },

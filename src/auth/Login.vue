@@ -229,7 +229,9 @@
             <h1 class="font-bold text-3xl text-gray-900 Barlow-Medium">
               Login
             </h1>
-            <p class="Barlow-Medium">Enter your username and password to login</p>
+            <p class="Barlow-Medium">
+              Enter your username and password to login
+            </p>
           </div>
           <!-- Form -->
           <!-- Username -->
@@ -240,7 +242,7 @@
                 <span class="label-text Barlow-Medium">Username</span>
               </label>
               <input
-              v-model="username"
+                v-model="user.username"
                 type="text"
                 placeholder="username"
                 class="input input-bordered"
@@ -252,7 +254,7 @@
                 <span class="label-text Barlow-Medium">Password</span>
               </label>
               <input
-              v-model="password"
+                v-model="user.password"
                 type="text"
                 placeholder="password"
                 class="input input-bordered"
@@ -263,7 +265,7 @@
             <div class="w-full px-3 mb-5">
               <router-link to="/">
                 <button
-                v-on:click="onSubmit()"
+                  v-on:click="login()"
                   class="
                     block
                     w-full
@@ -333,36 +335,61 @@
 </style>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-  data(){
-    return{
-      username: '',
-      password:'',
-    }
-
+  data() {
+    return {
+      user: {
+        username: "",
+        password: "",
+      },
+    };
   },
-  async onSubmit() {
-      await this.$store.dispatch("login", 
-      );
 
-    },
-    async login({ commit, dispatch }, user_auth) {
-      try {
-        let res = await axios.post('' + "/user/login", user_auth);
-
-        commit("LOGIN_USER", res.data);
-        dispatch("addNotification", {
-          type: "success",
-          message: "login seccess",
+  methods: {
+    getToken() {
+      axios
+        .post("https://walkincloset.ddns.net/backend/authenticate", this.user)
+        .then((response) => {
+          localStorage.setItem("token", response.data.token);
+          console.log(localStorage.getItem("token"));
+          // this.getUser();
         });
-
-      } catch {
-        dispatch("addNotification", {
-          type: "error",
-          message: "login failed",
-        });
-      }
     },
-}
+
+    getUser() {
+      // axios
+      //   .get(
+      //     "https://walkincloset.ddns.net/backend/Users/Login",
+      //     { params: {
+      //       username:this.user.username
+      //     } },
+      //     {
+      // headers: {
+      //   Authorization: `Bearer ${localStorage.getItem("token")}`
+      // }
+      //     }
+      //   )
+      //   .then((response) => {
+      //     localStorage.setItem("user", response.data);
+      //   });
+      const api = "https://walkincloset.ddns.net/backend/Users/Login";
+      const token = JSON.parse(sessionStorage.getItem("token"));
+      axios
+        .get(api, { headers: { Authorization: `Bearer ${token}` } } , { params:{username:this.user.username}})
+        .then((res) => {
+          console.log(res.data);
+        });
+    },
+
+    login() {
+      this.getToken();
+      this.getUser();
+    },
+
+    logout() {
+      localStorage.removeItem("user");
+    },
+  },
+};
 </script>
