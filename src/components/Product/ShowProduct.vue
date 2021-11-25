@@ -2,7 +2,13 @@
   <based-navbar />
   <div class="min-w-screen min-h-screen flex items-center justify-center">
     <div
-      class="rounded-3xl w-full sm:my-24 sm:ml-16 md:my-26 md:ml-24 lg:ml-28 lg:my-32"
+      class="
+        rounded-3xl
+        w-full
+        sm:my-24 sm:ml-16
+        md:my-26 md:ml-24
+        lg:ml-28 lg:my-32
+      "
       style="max-width: 1000 px"
     >
       <div class="md:flex w-full xl:flex w-full sm:flex w-full lg:flex w-full">
@@ -15,12 +21,28 @@
         <div class="w-full py-6 px-4 lg:px-16 sm:px-7 md:px-12 paddingtext">
           <div v-if="!isLoadingProducts" class="text-start mb-10 space-y-6">
             <h1
-              class="font-bold uppercase text-4xl text-gray-900 Barlow sm:text-3xl md:text-4xl text1"
+              class="
+                font-bold
+                uppercase
+                text-4xl text-gray-900
+                Barlow
+                sm:text-3xl
+                md:text-4xl
+                text1
+              "
             >
               {{ allProduct.productName }}
             </h1>
             <h1
-              class="text-2xl uppercase text-gray-900 Barlow sm:text-xl md:text-2xl text3"
+              class="
+                text-2xl
+                uppercase
+                text-gray-900
+                Barlow
+                sm:text-xl
+                md:text-2xl
+                text3
+              "
             >
               {{ allProduct.brandId.brandName }}
             </h1>
@@ -32,7 +54,16 @@
 
             <div>
               <h1
-                class="text-2xl uppercase text-gray-900 Barlow mb-4 sm:text-xl md:text-2xl text3"
+                class="
+                  text-2xl
+                  uppercase
+                  text-gray-900
+                  Barlow
+                  mb-4
+                  sm:text-xl
+                  md:text-2xl
+                  text3
+                "
               >
                 Color
               </h1>
@@ -49,26 +80,57 @@
             </div>
 
             <h1
-              class="font-bold uppercase text-3xl text-gray-900 Barlow-Medium sm:text-2xl md:text-3xl text2"
+              class="
+                font-bold
+                uppercase
+                text-3xl text-gray-900
+                Barlow-Medium
+                sm:text-2xl
+                md:text-3xl
+                text2
+              "
             >
               {{ allProduct.productPrice }} THB
             </h1>
 
             <div>
               <h1
-                class="text-2xl font-bold uppercase text-gray-900 Barlow sm:text-xl md:text-2xl text3"
+                class="
+                  text-2xl
+                  font-bold
+                  uppercase
+                  text-gray-900
+                  Barlow
+                  sm:text-xl
+                  md:text-2xl
+                  text3
+                "
               >
                 Release Date
               </h1>
               <h1 class="text-xl uppercase text-gray-400 Barlow text4">
-               {{ allProduct.date }}
+                {{ allProduct.date }}
               </h1>
             </div>
+
             <div class="flex justify-start">
               <div class="pt-4">
                 <button
                   @click="emitProduct(allProduct.productId)"
-                  class="uppercase rounded-md border-black border-2 text-black px-4 py-3 transition duration-300 ease-in-out hover:bg-black hover:text-white mr-6 Barlow-Medium"
+                  class="
+                    uppercase
+                    rounded-md
+                    border-black border-2
+                    text-black
+                    px-4
+                    py-3
+                    transition
+                    duration-300
+                    ease-in-out
+                    hover:bg-black hover:text-white
+                    mr-6
+                    Barlow-Medium
+                  "
                 >
                   Edit
                 </button>
@@ -77,15 +139,127 @@
                 <button
                   @click="deleteProduct"
                   type="submit"
-                  class="uppercase rounded-md border-red-500 border-2 bg-red-500 text-white px-4 py-3 transition duration-300 ease-in-out hover:border-black hover:border-2 hover:bg-white hover:text-black mr-6 Barlow-Medium"
+                  class="
+                    uppercase
+                    rounded-md
+                    border-red-500 border-2
+                    bg-red-500
+                    text-white
+                    px-4
+                    py-3
+                    transition
+                    duration-300
+                    ease-in-out
+                    hover:border-black
+                    hover:border-2
+                    hover:bg-white
+                    hover:text-black
+                    mr-6
+                    Barlow-Medium
+                  "
                 >
                   Delete
                 </button>
               </div>
             </div>
+            <div class="mx-10 pt-15">
+              <div
+                class="
+                  min-w-0
+                  p-4
+                  text-white
+                  bg-purple-600
+                  rounded-lg
+                  shadow-xs
+                "
+              >
+                <h4 class="mb-4 font-semibold">
+                  {{ allFeedback.usersId.userName }}
+                </h4>
+                <p>{{ allFeedback.message }}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div
+      class="
+        flex
+        items-center
+        justify-center
+        shadow-lg
+        mt-56
+        mx-8
+        mb-4
+        max-w-lg
+      "
+    >
+      <form class="w-full max-w-xl bg-white rounded-lg px-4 pt-2">
+        <div class="flex flex-wrap -mx-3 mb-6">
+          <h2 class="px-4 pt-3 pb-2 text-gray-800 text-lg">
+            Add a new comment
+          </h2>
+          <div class="w-full md:w-full px-3 mb-2 mt-2">
+            <textarea
+            v-model="addFeedback"
+              class="
+                bg-gray-100
+                rounded
+                border border-gray-400
+                leading-normal
+                resize-none
+                w-full
+                h-20
+                py-2
+                px-3
+                font-medium
+                placeholder-gray-700
+                focus:outline-none focus:bg-white
+              "
+              name="body"
+              placeholder="Type Your Comment"
+              required
+            ></textarea>
+          </div>
+          <div class="w-full flex items-start md:w-full px-3">
+            <div class="flex items-start w-1/2 text-gray-700 px-2 mr-auto">
+              <svg
+                fill="none"
+                class="w-5 h-5 text-gray-600 mr-1"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <p class="text-xs md:text-sm pt-px">Some HTML is okay.</p>
+            </div>
+            <div class="-mr-1">
+              <input
+                type="submit"
+                class="
+                  bg-white
+                  text-gray-700
+                  font-medium
+                  py-1
+                  px-4
+                  border border-gray-400
+                  rounded-lg
+                  tracking-wide
+                  mr-1
+                  hover:bg-gray-100
+                "
+                value="Post Comment"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -121,11 +295,17 @@ export default {
       },
       urlProduct: `https://walkincloset.ddns.net/backend/Products/Edit/${this.id}`,
       urlDelete: `https://walkincloset.ddns.net/backend/Products/Delete/${this.id}`,
+      allFeedback: [],
+      urlFeedback: `https://walkincloset.ddns.net/backend/Feedback/GetFeedback/${this.$route.params.id}`,
+      urlCreateFeedback:
+        "https://walkincloset.ddns.net/backend/Feedback/Create",
+        addFeedback:"",
     };
   },
   name: "Modal",
   props: ["id"],
   async created() {
+    this.fetchFeedback();
     this.allProduct = await this.fetchProduct();
     this.allColors = await this.fetchColors();
     this.allBrands = await this.fetchBrands();
@@ -133,10 +313,27 @@ export default {
     this.isLoadingColors = false;
     this.isLoadingBrands = false;
     this.isLoadingImages = false;
+    console.log(this.$route);
+    console.log(this.urlFeedback);
   },
   methods: {
+    sendFeedback(){
+axios.post(this.urlCreateFeedback, )
+      },
+    fetchFeedback() {
+      axios
+        .get(this.urlFeedback)
+        .then((res) => {
+          this.allFeedback = res.data;
+          console.log(this.allFeedback);
+          return res.data;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
     deleteProduct() {
-       if(confirm("Do you want to delete this product?") === false){
+      if (confirm("Do you want to delete this product?") === false) {
         return;
       }
       axios.delete(this.urlDelete).then((res) => {
@@ -156,13 +353,17 @@ export default {
       return data;
     },
     async fetchColors() {
-      const res = await fetch("https://walkincloset.ddns.net/backend/Colors/GetColors");
+      const res = await fetch(
+        "https://walkincloset.ddns.net/backend/Colors/GetColors"
+      );
       const data = await res.json();
       console.log(data);
       return data;
     },
     async fetchBrands() {
-      const res = await fetch("https://walkincloset.ddns.net/backend/Brands/GetBrands");
+      const res = await fetch(
+        "https://walkincloset.ddns.net/backend/Brands/GetBrands"
+      );
       const data = await res.json();
       return data;
     },
@@ -214,7 +415,7 @@ export default {
     font-size: 14px;
     align-items: left;
   }
-} 
+}
 
 @media only screen and (min-device-width: 481px) and (max-device-width: 639px) {
   .height-small {
@@ -273,7 +474,7 @@ export default {
     font-size: 14px;
     align-items: left;
   }
-} 
+}
 
 @media only screen and (min-device-width: 50px) and (max-device-width: 229px) {
   .height-small {
@@ -303,6 +504,4 @@ export default {
     align-items: left;
   }
 }
-
-
 </style>
