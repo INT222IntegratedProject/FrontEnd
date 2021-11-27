@@ -23,25 +23,24 @@
           </div>
         </div>
       </div>
-      <!-- <nav
+      <nav
         :class="isOpen ? '' : 'hidden'"
         class="sm:flex sm:justify-center sm:items-center mt-4"
       >
         <div class="flex flex-col sm:flex-row">
-          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="/product/HM"
             >H&M</a
           >
           <a
-            @click="filteredUniqlo()"
             class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0"
-            href="#"
+            href="/product/Uniqlo"
             >Uniqlo</a
           >
-          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="/product/Zara"
             >Zara</a
           >
         </div>
-      </nav> -->
+      </nav>
       <div class="relative mt-6 max-w-lg mx-auto">
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
           <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
@@ -56,7 +55,7 @@
         </span>
 
         <input
-          v-model="searchZara"
+          v-model="search"
           class="
             w-full
             border
@@ -178,11 +177,10 @@
 <script>
 import axios from "axios";
 import ColorBlock from "../../Decorate/ColorBlock.vue";
-// import BasedSecond from "../Navbar/SecondNavbar.vue";
 export default {
   components: {
     ColorBlock,
-    // BasedSecond,
+
   },
   data() {
     return {

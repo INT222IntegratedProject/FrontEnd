@@ -5,13 +5,12 @@
     class="
       grid grid-cols-1
       sm:grid-cols-2
-      md:grid-cols-3
-      xl:grid-cols-5
+      md:grid-cols-1
+      xl:grid-cols-3
       gap-4
       
     "
   >
-    <div></div>
     <!-- Lucky -->
     <div
       class="
@@ -39,64 +38,10 @@
       </div>
 
       <h2 class="mt-4 font-bold text-xl">Kanokporn Buaycharoen</h2>
+      <h6 class="mt-2 text-md font-medium">62130500002</h6>
       <h6 class="mt-2 text-sm font-medium">Front-End</h6>
 
-      <ul class="flex flex-row mt-4 space-x-2">
-        <li>
-          <a
-            href=""
-            class="
-              flex
-              items-center
-              justify-center
-              h-8
-              w-8
-              border
-              rounded-full
-              text-gray-800
-              border-gray-800
-            "
-          >
-            <i class="fab fa-facebook"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href=""
-            class="
-              flex
-              items-center
-              justify-center
-              h-8
-              w-8
-              border
-              rounded-full
-              text-gray-800
-              border-gray-800
-            "
-          >
-            <i class="fab fa-twitter"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href=""
-            class="
-              flex
-              items-center
-              justify-center
-              h-8
-              w-8
-              border
-              rounded-full
-              text-gray-800
-              border-gray-800
-            "
-          >
-            <i class="fab fa-instagram"></i>
-          </a>
-        </li>
-      </ul>
+      
     </div>
     <!-- Muk -->
     <div
@@ -125,64 +70,9 @@
       </div>
 
       <h2 class="mt-4 font-bold text-xl">Pacharaporn Kamsanong</h2>
+      <h6 class="mt-2 text-md font-medium">62130500061</h6>
       <h6 class="mt-2 text-sm font-medium">Database x Devops</h6>
-
-      <ul class="flex flex-row mt-4 space-x-2">
-        <li>
-          <a
-            href=""
-            class="
-              flex
-              items-center
-              justify-center
-              h-8
-              w-8
-              border
-              rounded-full
-              text-gray-800
-              border-gray-800
-            "
-          >
-            <i class="fab fa-facebook"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href=""
-            class="
-              flex
-              items-center
-              justify-center
-              h-8
-              w-8
-              border
-              rounded-full
-              text-gray-800
-              border-gray-800
-            "
-          >
-            <i class="fab fa-twitter"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href=""
-            class="
-              flex
-              items-center
-              justify-center
-              h-8
-              w-8
-              border
-              rounded-full
-              text-gray-800
-              border-gray-800
-            "
-          >
-            <i class="fab fa-instagram"></i>
-          </a>
-        </li>
-      </ul>
+      
     </div>
     <!-- Benz -->
     <div
@@ -211,64 +101,9 @@
       </div>
 
       <h2 class="mt-4 font-bold text-xl">Weeraphon Supachok</h2>
+      <h6 class="mt-2 text-md font-medium">62130500131</h6>
       <h6 class="mt-2 text-sm font-medium">Back-End</h6>
 
-      <ul class="flex flex-row mt-4 space-x-2">
-        <li>
-          <a
-            href=""
-            class="
-              flex
-              items-center
-              justify-center
-              h-8
-              w-8
-              border
-              rounded-full
-              text-gray-800
-              border-gray-800
-            "
-          >
-            <i class="fab fa-facebook"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href=""
-            class="
-              flex
-              items-center
-              justify-center
-              h-8
-              w-8
-              border
-              rounded-full
-              text-gray-800
-              border-gray-800
-            "
-          >
-            <i class="fab fa-twitter"></i>
-          </a>
-        </li>
-        <li>
-          <a
-            href=""
-            class="
-              flex
-              items-center
-              justify-center
-              h-8
-              w-8
-              border
-              rounded-full
-              text-gray-800
-              border-gray-800
-            "
-          >
-            <i class="fab fa-instagram"></i>
-          </a>
-        </li>
-      </ul>
     </div>
   </div>
 </div>

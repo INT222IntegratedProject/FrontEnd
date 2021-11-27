@@ -209,8 +209,8 @@
         >
           Preview Image
         </div>
-        <div class="bg-white my-2 p-1 flex svelte-1l8159u">
-          <img :src="getImage" class="h-60 w-60" />
+        <div class="bg-white my-2 p-1 flex svelte-1l8159u pl-60">
+          <img :src="getImage" class="h-60 w-60 " />
         </div>
       </div>
     </div>

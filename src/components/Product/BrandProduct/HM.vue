@@ -1,6 +1,6 @@
 <template>
-  <based-navbar/>
-  <header>
+  <based-navbar />
+    <header>
     <div class="container mx-auto px-6 py-3 pt-24">
       <div class="flex items-center justify-between">
         <div class="hidden w-full text-gray-600 md:flex md:items-center"></div>
@@ -23,25 +23,24 @@
           </div>
         </div>
       </div>
-      <!-- <nav
+      <nav
         :class="isOpen ? '' : 'hidden'"
         class="sm:flex sm:justify-center sm:items-center mt-4"
       >
         <div class="flex flex-col sm:flex-row">
-          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="/product/HM"
             >H&M</a
           >
           <a
-            @click="filteredUniqlo()"
             class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0"
-            href="#"
+            href="/product/Uniqlo"
             >Uniqlo</a
           >
-          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="/product/Zara"
             >Zara</a
           >
         </div>
-      </nav> -->
+      </nav>
       <div class="relative mt-6 max-w-lg mx-auto">
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
           <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
@@ -56,7 +55,7 @@
         </span>
 
         <input
-          v-model="searchHm"
+          v-model="search"
           class="
             w-full
             border
@@ -99,7 +98,6 @@
               py-3
             "
           ></div>
-         
         </nav>
 
         <!-- <div
@@ -178,16 +176,17 @@
 <script>
 import axios from "axios";
 import ColorBlock from "../../Decorate/ColorBlock.vue";
-// import BasedSecond from "../Navbar/SecondNavbar.vue";
+
 export default {
   components: {
     ColorBlock,
-    // BasedSecond,
+
   },
   data() {
     return {
       searchHm: "",
-      urlHM:"https://walkincloset.ddns.net/backend/Products/GetProducts/Brands/hm",
+      urlHM:
+        "https://walkincloset.ddns.net/backend/Products/GetProducts/Brands/hm",
       allHmProduct: [],
     };
   },
@@ -212,7 +211,6 @@ export default {
           console.error(err);
         });
     },
-    
   },
 
   computed: {

@@ -281,7 +281,7 @@
               :value="color"
               v-model="newProduct.productColors"
             />
-            <label for="color">{{ color.colorId }}</label>
+            <label for="color" >{{ color.colorId }}</label>
           </div>
         </div>
         <div class="w-full mx-2 flex-1 svelte-1l8159u">
@@ -368,7 +368,7 @@
             class="
               font-bold
               h-6
-              mt-3
+              -mt-20
               text-gray-600 text-xs
               Barlow-Medium
               tracking-wider
@@ -378,7 +378,7 @@
           >
             Preview Image
           </div>
-          <div class="bg-white my-2 p-1 flex svelte-1l8159u">
+          <div class="bg-white p-1 flex svelte-1l8159u pl-60">
             <img :src="preImages" class="h-60 w-60" />
           </div>
         </div>

@@ -1,8 +1,8 @@
 <template>
     <footer class="p-10 footer bg-base-200 text-base-content footer-center">
   <div class="grid grid-flow-col gap-4">
-    <a class="link link-hover">About us</a> 
-    <a class="link link-hover">Feedback</a> 
+    <a href="/about" class="link link-hover">About us</a> 
+
   </div> 
   <div>
     <div class="grid grid-flow-col gap-4">

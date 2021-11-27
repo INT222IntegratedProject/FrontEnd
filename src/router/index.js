@@ -12,12 +12,7 @@ const routes = [{
         component: () =>
             import ('../views/About.vue')
     },
-    {
-        path: '/feedback',
-        name: 'feedback',
-        component: () =>
-            import ('../components/Product/Feedback/ShowFeedback.vue')
-    },
+    
     {
         path: '/login',
         name: 'login',
@@ -107,6 +102,12 @@ const routes = [{
         name: 'UserList',
         component: () =>
             import ('../views/Users/Userlist.vue')
+    },
+    {
+        path: '/user-product',
+        name: 'UserProduct',
+        component: () =>
+            import ('../views/Users/ProductListUser.vue')
     },
     {
         path: '/edituser',

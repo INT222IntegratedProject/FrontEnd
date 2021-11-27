@@ -97,7 +97,6 @@
               py-3
             "
           ></div>
-          <based-second />
         </nav>
 
         <!-- <div

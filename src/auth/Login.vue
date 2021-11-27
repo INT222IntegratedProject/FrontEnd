@@ -287,6 +287,7 @@
             </div>
           </div>
           <div class="text-center mt-2">
+            <div>
             <span> Don't have an account? </span>
             <a
               href="/register"
@@ -298,6 +299,21 @@
               "
               >Create One</a
             >
+            </div>
+            <br>
+            <div>
+            <span> don't want to login ? </span>
+            <a
+              href="/product"
+              class="
+                Barlow-Medium
+                text-md text-indigo-600
+                underline
+                hover:text-indigo-800
+              "
+              >back to product page</a
+            >
+            </div>
           </div>
         </div>
       </div>
@@ -353,30 +369,14 @@ export default {
         .then((response) => {
           localStorage.setItem("token", response.data.token);
           console.log(localStorage.getItem("token"));
-          // this.getUser();
+          this.getUser(response.data.token);
         });
     },
 
-    getUser() {
-      // axios
-      //   .get(
-      //     "https://walkincloset.ddns.net/backend/Users/Login",
-      //     { params: {
-      //       username:this.user.username
-      //     } },
-      //     {
-      // headers: {
-      //   Authorization: `Bearer ${localStorage.getItem("token")}`
-      // }
-      //     }
-      //   )
-      //   .then((response) => {
-      //     localStorage.setItem("user", response.data);
-      //   });
+    getUser(token) {
       const api = "https://walkincloset.ddns.net/backend/Users/Login";
-      const token = JSON.parse(sessionStorage.getItem("token"));
       axios
-        .get(api, { headers: { Authorization: `Bearer ${token}` } } , { params:{username:this.user.username}})
+        .get(api, { headers: { Authorization: `Bearer ${token}` } } )
         .then((res) => {
           console.log(res.data);
         });
@@ -384,7 +384,6 @@ export default {
 
     login() {
       this.getToken();
-      this.getUser();
     },
 
     logout() {
