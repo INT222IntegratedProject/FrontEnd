@@ -34,7 +34,7 @@ pipeline {
             steps {
                 git branch: 'master',
                     credentialsId: 'INT222jenkins',
-                    url: 'https://github.com/INT222IntegratedProject/front-end.git'
+                    url: 'https://github.com/INT222IntegratedProject/FrontEnd.git'
             }
         }
 
