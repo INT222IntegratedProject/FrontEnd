@@ -238,6 +238,7 @@
                   <span class="label-text Barlow-Medium">Username</span>
                 </label>
                 <input
+                v-model="username"
                   type="text"
                   placeholder="username"
                   class="input input-sm input-bordered"
@@ -249,6 +250,7 @@
                   <span class="label-text Barlow-Medium">Password</span>
                 </label>
                 <input
+                v-model="password"
                   type="text"
                   placeholder="password"
                   class="input input-sm input-bordered"
@@ -262,6 +264,7 @@
                   <span class="label-text Barlow-Medium">Firstname</span>
                 </label>
                 <input
+                  v-model="firstname"
                   type="text"
                   placeholder="firstname"
                   class="input input-sm input-bordered"
@@ -273,6 +276,7 @@
                   <span class="label-text Barlow-Medium">Lastname</span>
                 </label>
                 <input
+                  v-model="lastname"
                   type="text"
                   placeholder="lastname"
                   class="input input-sm input-bordered"
@@ -285,6 +289,7 @@
                 <span class="label-text Barlow-Medium">Email</span>
               </label>
               <input
+              v-model="email"
                 type="email"
                 placeholder="email"
                 class="input input-sm input-bordered"
@@ -296,6 +301,7 @@
                 <span class="label-text Barlow-Medium">Address</span>
               </label>
               <textarea
+              v-model="address"
                 class="textarea h-24 textarea-bordered"
                 placeholder="Address"
               ></textarea>

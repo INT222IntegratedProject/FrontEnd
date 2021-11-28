@@ -112,7 +112,7 @@
           :product="product"
         >
           <img
-            class="hover:grow hover:shadow-lg w-72 h-72 object-cover"
+            class="hover:grow hover:shadow-lg w-72 h-72 object-cover lg:self-center sm:self-center mobile"
             :src="`https://walkincloset.ddns.net/backend/Images/Get/${product.productId}.jpg`"
             @click="emitShow(product.productId)"
           />
@@ -168,6 +168,12 @@
 }
 .Barlow-Medium {
   font-family: Barlow-Medium;
+}
+
+@media screen and (max-width: 640px) {
+   .mobile {
+    align-self: center;
+  }
 }
 </style>
 
