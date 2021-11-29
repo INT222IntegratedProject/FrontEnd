@@ -242,11 +242,15 @@
                 <span class="label-text Barlow-Medium">Username</span>
               </label>
               <input
+                @blur="validatingUsername"
                 v-model="user.username"
                 type="text"
                 placeholder="username"
                 class="input input-bordered"
               />
+              <h6 v-if="invalidUsername" class="text-red-500 text-sm">
+                username can't be blank
+              </h6>
             </div>
             <!-- Password -->
             <div class="form-control">
@@ -254,11 +258,15 @@
                 <span class="label-text Barlow-Medium">Password</span>
               </label>
               <input
+                @blur="validatingPassword"
                 v-model="user.password"
                 type="text"
                 placeholder="password"
                 class="input input-bordered"
               />
+              <h6 v-if="invalidPassword" class="text-red-500 text-sm">
+                password can't be blank
+              </h6>
             </div>
           </div>
           <div class="flex -mx-3 mt-8">
@@ -288,31 +296,31 @@
           </div>
           <div class="text-center mt-2">
             <div>
-            <span> Don't have an account? </span>
-            <a
-              href="/register"
-              class="
-                Barlow-Medium
-                text-md text-indigo-600
-                underline
-                hover:text-indigo-800
-              "
-              >Create One</a
-            >
+              <span> Don't have an account? </span>
+              <a
+                href="/register"
+                class="
+                  Barlow-Medium
+                  text-md text-indigo-600
+                  underline
+                  hover:text-indigo-800
+                "
+                >Create One</a
+              >
             </div>
-            <br>
+            <br />
             <div>
-            <span> don't want to login ? </span>
-            <a
-              href="/product"
-              class="
-                Barlow-Medium
-                text-md text-indigo-600
-                underline
-                hover:text-indigo-800
-              "
-              >back to product page</a
-            >
+              <span> don't want to login ? </span>
+              <a
+                href="/product"
+                class="
+                  Barlow-Medium
+                  text-md text-indigo-600
+                  underline
+                  hover:text-indigo-800
+                "
+                >back to product page</a
+              >
             </div>
           </div>
         </div>
@@ -359,33 +367,66 @@ export default {
         username: "",
         password: "",
       },
+      urlLogin: "",
+      invalidUsername: false,
+      invalidPassword: false,
     };
   },
 
   methods: {
-    
-   async login() {
-      await axios
-        .post("https://walkincloset.ddns.net/backend/authenticate", this.user)
-        .then((response) => {
+    async login() {
+      await axios.post("https://walkincloset.ddns.net/backend/Users/Login", this.user).then((response) => {
+        if (response.data.accessToken) {
+          localStorage.setItem("user", JSON.stringify(response.data));
           localStorage.setItem("token", response.data.token);
-          console.log(localStorage.getItem("token"));
-          this.getUser(response.data.token);
-        });
+        }
+        return response.data;
+      });
     },
 
-    async getUser(token) {
-      const api = "https://walkincloset.ddns.net/backend/Users/Login";
-      console.log(token)
-      await axios
-        .get(api, { headers: { Authorization: `Bearer ${token}` } } , {username: this.user.username} )
-        .then((res) => {
-          console.log(res.data);
-        });
-    },
+    //  async login() {
+    //     await axios
+    //       .post("https://walkincloset.ddns.net/backend/authenticate", this.user)
+    //       .then((response) => {
+    //         localStorage.setItem("token", response.data.token);
+    //         console.log(localStorage.getItem("token"));
+    //         this.getUser(response.data.token);
+    //       });
+    //   },
+
+    //   async getUser(token) {
+    //     const api = "https://walkincloset.ddns.net/backend/Users/Login";
+    //     console.log(token)
+    //     await axios
+    //       .get(api, { headers: { Authorization: `Bearer ${token}` } } , {username: this.user.username} )
+    //       .then((res) => {
+    //         console.log(res.data);
+    //       });
+    //   },
 
     logout() {
       localStorage.removeItem("user");
+    },
+
+    validatingUsername() {
+      this.invalidUsername = this.user.username === "" ? true : false;
+    },
+    validatingPassword() {
+      this.invalidPassword =
+        this.user.password === "" ? true : false;
+    },
+    submitCheckValidate() {
+      this.invalidUsername = this.user.username === "" ? true : false;
+      this.invalidPassword =
+        this.user.password === "" ? true : false;
+      if (
+        this.invalidUsername ||
+        this.invalidPassword 
+      ) {
+        console.log("Error");
+      } else {
+        this.login();
+      }
     },
   },
 };

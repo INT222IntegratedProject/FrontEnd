@@ -238,11 +238,15 @@
                   <span class="label-text Barlow-Medium">Username</span>
                 </label>
                 <input
-                v-model="userName"
+                  @blur="validatingUsername"
+                  v-model="registerUser.userName"
                   type="text"
                   placeholder="username"
                   class="input input-sm input-bordered"
                 />
+                <h6 v-if="invalidUsername" class="text-red-500 text-sm">
+                  username can't be blank
+                </h6>
               </div>
               <!-- Password -->
               <div class="form-control">
@@ -250,11 +254,15 @@
                   <span class="label-text Barlow-Medium">Password</span>
                 </label>
                 <input
-                v-model="userPassword"
+                  @blur="validatingPassword"
+                  v-model="registerUser.userPassword"
                   type="text"
                   placeholder="password"
                   class="input input-sm input-bordered"
                 />
+                <h6 v-if="invalidPassword" class="text-red-500 text-sm">
+                  password can't be blank
+                </h6>
               </div>
             </div>
             <!-- Firstname -->
@@ -264,11 +272,15 @@
                   <span class="label-text Barlow-Medium">Firstname</span>
                 </label>
                 <input
-                  v-model="userFirstname"
+                  @blur="validatingFirstname"
+                  v-model="registerUser.userFirstname"
                   type="text"
                   placeholder="firstname"
                   class="input input-sm input-bordered"
                 />
+                <h6 v-if="invalidFirstname" class="text-red-500 text-sm">
+                  firstname can't be blank
+                </h6>
               </div>
               <!-- Lastname -->
               <div class="form-control">
@@ -276,11 +288,15 @@
                   <span class="label-text Barlow-Medium">Lastname</span>
                 </label>
                 <input
-                  v-model="userLastname"
+                  @blur="validatingLastname"
+                  v-model="registerUser.userLastname"
                   type="text"
                   placeholder="lastname"
                   class="input input-sm input-bordered"
                 />
+                <h6 v-if="invalidLastname" class="text-red-500 text-sm">
+                  lastname can't be blank
+                </h6>
               </div>
             </div>
             <!-- Email -->
@@ -289,11 +305,31 @@
                 <span class="label-text Barlow-Medium">Email</span>
               </label>
               <input
-              v-model="userEmail"
+                @blur="validatingEmail"
+                v-model="registerUser.userEmail"
                 type="email"
                 placeholder="email"
                 class="input input-sm input-bordered"
               />
+              <h6 v-if="invalidEmail" class="text-red-500 text-sm">
+                  email can't be blank
+                </h6>
+            </div>
+            <!-- Tel -->
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text Barlow-Medium">Tel</span>
+              </label>
+              <input
+                @blur="validatingTel"
+                v-model="registerUser.userTel"
+                type="email"
+                placeholder="email"
+                class="input input-sm input-bordered"
+              />
+              <h6 v-if="invalidTel" class="text-red-500 text-sm">
+                  tel can't be blank
+                </h6>
             </div>
             <!-- Address -->
             <div class="form-control">
@@ -301,10 +337,14 @@
                 <span class="label-text Barlow-Medium">Address</span>
               </label>
               <textarea
-              v-model="userAddress"
+                @blur="validatingAddress"
+                v-model="registerUser.userAddress"
                 class="textarea h-24 textarea-bordered"
                 placeholder="Address"
               ></textarea>
+              <h6 v-if="invalidAddress" class="text-red-500 text-sm">
+                  address can't be blank
+                </h6>
             </div>
             <div class="flex -mx-3">
               <div class="w-full px-3 mb-5">
@@ -381,29 +421,91 @@
 </style>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-  data(){
-    return{
-      userId:'',
-      userName:'',
-      userPassword:'',
-      userFirstName:'',
-      userLastName:'',
-      userEmail:'',
-      userTel:'',
-      userAddress:'',
-      roleId: {
-        roleId:'',
-        roleName:'',
-      }
-    }
+  data() {
+    return {
+      registerUser: {
+        userName: "",
+        userPassword: "",
+        userFirstName: "",
+        userLastName: "",
+        userEmail: "",
+        userTel: "",
+        userAddress: "",
+        roleId: {
+          roleId: "71717",
+          roleName: "Member",
+        },
+      },
+      urlRegister: "https://walkincloset.ddns.net/backend/Users/Create",
+
+      invalidUsername: false,
+      invalidPassword: false,
+      invalidFirstname: false,
+      invalidLastname: false,
+      invalidEmail: false,
+      invalidTel: false,
+      invalidAddress: false,
+    };
   },
- methods:{
-   register(){
-     axios.post('https://walkincloset.ddns.net/backend/Users/Create')
-   }
- }
-   
-}
+  methods: {
+    register() {
+      axios.post(this.urlRegister, this.registerUser).then((response) => {
+        console.log(response.data);
+        return response.data;
+      });
+    },
+    validatingUsername() {
+      this.invalidUsername = this.registerUser.userName === "" ? true : false;
+    },
+    validatingPassword() {
+      this.invalidPassword =
+        this.registerUser.userPassword === "" ? true : false;
+    },
+    validatingFirstname() {
+      this.invalidFirstname =
+        this.registerUser.userFirstName === "" ? true : false;
+    },
+    validatingLastname() {
+      this.invalidLastname =
+        this.registerUser.userLastName === "" ? true : false;
+    },
+    validatingEmail() {
+      this.invalidEmail = this.registerUser.userEmail === "" ? true : false;
+    },
+    validatingTel() {
+      this.invalidTel = this.registerUser.userTel === "" ? true : false;
+    },
+    validatingAddress() {
+      this.invalidAddress = this.registerUser.userAddress === "" ? true : false;
+    },
+
+    submitCheckValidate() {
+      this.invalidUsername = this.registerUser.userName === "" ? true : false;
+      this.invalidPassword =
+        this.registerUser.userPassword === "" ? true : false;
+      this.invalidFirstname =
+        this.registerUser.userFirstName === "" ? true : false;
+      this.invalidLastname =
+        this.registerUser.userLastName === "" ? true : false;
+      this.invalidEmail = this.registerUser.userEmail === "" ? true : false;
+      this.invalidTel = this.registerUser.userTel === "" ? true : false;
+      this.invalidAddress = this.registerUser.userAddress === "" ? true : false;
+      if (
+        this.invalidUsername ||
+        this.invalidPassword ||
+        this.invalidFirstname ||
+        this.invalidLastname ||
+        this.invalidEmail ||
+        this.invalidTel ||
+        this.invalidAddress
+      ) {
+        console.log("Error");
+      } else {
+        this.register();
+      }
+    },
+  },
+};
 </script>
