@@ -381,6 +381,7 @@ export default {
           localStorage.setItem("token", response.data.token);
         }
         return response.data;
+        
       });
     },
 
