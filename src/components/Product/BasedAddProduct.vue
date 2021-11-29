@@ -431,13 +431,14 @@ export default {
         productName: "",
         productType: "",
         productDescription: "",
-        productPrice: null,
+        productPrice: 0,
         productGender: "",
         date: "",
         brandId: {
-          brandId: null,
+          brandId: 0,
           brandName: "",
         },
+        userId: JSON.parse(localStorage.getItem("user")),
         productColors: [],
       },
       invalidName: false,
@@ -476,7 +477,12 @@ export default {
       axios
         .post(
           `https://walkincloset.ddns.net/backend/Images/upload/` + (newId + 1),
-          formData
+          formData ,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")} `,
+            },
+          }
         )
         .then(function () {
           window.location.href = "/product";
