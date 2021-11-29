@@ -308,7 +308,9 @@ export default {
     },
     editProduct() {
       axios
-        .put(this.urlEditProduct, this.getProduct)
+        .put(this.urlEditProduct, this.getProduct ,
+        { headers: { Authorization: `Bearer ${localStorage.getItem("token")} ` } }
+        )
         .then((response) => {
           return response.data;
         })

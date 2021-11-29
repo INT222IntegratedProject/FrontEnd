@@ -281,7 +281,7 @@
               :value="color"
               v-model="newProduct.productColors"
             />
-            <label for="color" >{{ color.colorId }}</label>
+            <label for="color">{{ color.colorId }}</label>
           </div>
         </div>
         <div class="w-full mx-2 flex-1 svelte-1l8159u">
@@ -535,7 +535,11 @@ export default {
     },
     addProduct() {
       axios
-        .post(this.urlAdd, this.newProduct)
+        .post(
+          this.urlAdd,
+          this.newProduct,
+          { headers: { Authorization: `Bearer ${localStorage.getItem("token")} ` } }
+        )
         .then((response) => {
           console.log(response.data);
           return response.data;

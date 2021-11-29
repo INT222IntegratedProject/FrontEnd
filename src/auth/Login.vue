@@ -271,7 +271,6 @@
           </div>
           <div class="flex -mx-3 mt-8">
             <div class="w-full px-3 mb-5">
-              <router-link to="/">
                 <button
                   @click="submitCheckValidateLogin()"
                   class="
@@ -291,7 +290,6 @@
                 >
                   LOGIN
                 </button>
-              </router-link>
             </div>
           </div>
           <div class="text-center mt-2">
@@ -383,6 +381,9 @@ export default {
             console.log(response.data.users);
             console.log(localStorage.getItem("token"));
             console.log(localStorage.getItem("user"));
+            this.$router.replace({
+              name: 'Home'
+            })
           });
       },
 

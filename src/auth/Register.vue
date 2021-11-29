@@ -289,7 +289,7 @@
                 </label>
                 <input
                   @blur="validatingLastname"
-                  v-model="registerUser.userLastname"
+                  v-model="registerUser.userLastName"
                   type="text"
                   placeholder="lastname"
                   class="input input-sm input-bordered"

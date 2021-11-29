@@ -55,7 +55,7 @@
         </span>
 
         <input
-          v-model="search"
+          v-model="searchMale"
           class="
             w-full
             border
@@ -113,12 +113,12 @@
           :male="male"
         >
           <img
-            class="hover:grow hover:shadow-lg w-72 h-72 object-cover"
+            class="hover:grow hover:shadow-lg w-72 h-72 object-cover lg:self-center sm:self-center mobile"
             :src="`https://walkincloset.ddns.net/backend/Images/Get/${male.productId}.jpg`"
             @click="emitShow(male.productId)"
           />
           <div class="space-y-2">
-            <p class="text-gray-900 font-bold text-xl Barlow pt-4">
+            <p class="text-gray-900 font-bold text-xl Barlow pt-4 h-16">
               {{ male.productName }}
             </p>
             <p class="text-md Barlow font-bold">
@@ -170,6 +170,11 @@
 .Barlow-Medium {
   font-family: Barlow-Medium;
 }
+@media screen and (max-width: 640px) {
+   .mobile {
+    align-self: center;
+  }
+}
 </style>
 
 
@@ -214,7 +219,9 @@ export default {
   computed: {
     filteredMaleProduct() {
       return this.allMaleProduct.filter((male) =>
-        male.productName.toLowerCase().includes(this.searchMale.toLowerCase())
+        male.productName.toLowerCase().includes(this.searchMale.toLowerCase()) ||
+         male.brandId.brandName.toLowerCase().includes(this.searchMale.toLowerCase()) ||
+         (male.productPrice + '').includes(this.searchMale)
       );
     },
   },

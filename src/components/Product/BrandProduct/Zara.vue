@@ -55,7 +55,7 @@
         </span>
 
         <input
-          v-model="search"
+          v-model="searchZara"
           class="
             w-full
             border
@@ -216,7 +216,9 @@ export default {
   computed: {
     filteredZaraProduct() {
       return this.allZaraProduct.filter((zr) =>
-        zr.productName.toLowerCase().includes(this.searchZara.toLowerCase())
+        zr.productName.toLowerCase().includes(this.searchZara.toLowerCase()) ||
+        zr.brandId.brandName.toLowerCase().includes(this.searchZara.toLowerCase()) ||
+         (zr.productPrice + '').includes(this.searchZara)
       );
     },
   },

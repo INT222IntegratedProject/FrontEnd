@@ -55,7 +55,7 @@
         </span>
 
         <input
-          v-model="search"
+          v-model="searchHm"
           class="
             w-full
             border
@@ -215,8 +215,10 @@ export default {
 
   computed: {
     filteredHmProduct() {
-      return this.allHmProduct.filter((Hm) =>
-        Hm.productName.toLowerCase().includes(this.searchHm.toLowerCase())
+      return this.allHmProduct.filter((hm) =>
+        hm.productName.toLowerCase().includes(this.searchHm.toLowerCase()) ||
+         hm.brandId.brandName.toLowerCase().includes(this.searchHm.toLowerCase()) ||
+         (hm.productPrice + '').includes(this.searchHm)
       );
     },
   },

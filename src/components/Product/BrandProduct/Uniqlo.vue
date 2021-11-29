@@ -55,7 +55,7 @@
         </span>
 
         <input
-          v-model="search"
+          v-model="searchUniqlo"
           class="
             w-full
             border
@@ -217,7 +217,9 @@ export default {
   computed: {
     filteredUniqloProduct() {
       return this.allUniqloProduct.filter((unq) =>
-        unq.productName.toLowerCase().includes(this.searchUniqlo.toLowerCase())
+        unq.productName.toLowerCase().includes(this.searchUniqlo.toLowerCase()) ||
+        unq.brandId.brandName.toLowerCase().includes(this.searchUniqlo.toLowerCase()) ||
+         (unq.productPrice + '').includes(this.searchUniqlo)
       );
     },
   },

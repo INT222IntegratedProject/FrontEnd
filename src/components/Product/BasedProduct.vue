@@ -117,7 +117,7 @@
             @click="emitShow(product.productId)"
           />
           <div class="space-y-2">
-            <p class="text-gray-900 font-bold text-xl Barlow pt-4">
+            <p class="text-gray-900 font-bold text-xl Barlow pt-4 h-16">
               {{ product.productName }}
             </p>
             <p class="text-md Barlow font-bold">
@@ -263,7 +263,9 @@ export default {
   computed: {
     filteredProduct() {
       return this.allProductData.filter((product) =>
-        product.productName.toLowerCase().includes(this.search.toLowerCase())
+        product.productName.toLowerCase().includes(this.search.toLowerCase()) || 
+         product.brandId.brandName.toLowerCase().includes(this.search.toLowerCase()) ||
+         (product.productPrice + '').includes(this.search)
       );
     },
   },

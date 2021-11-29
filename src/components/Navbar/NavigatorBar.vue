@@ -65,7 +65,7 @@
           </div>
         </div>
         <!-- secondary nav -->
-        <div v-if="LoginSuccess" class="hidden md:flex items-center space-x-1">
+        <div v-if="!user" class="hidden md:flex items-center space-x-1">
           <a href="/login" class="py-5 px-3">Login</a>
           <a
             href="/register"
@@ -84,10 +84,34 @@
             >Sign up</a
           >
         </div>
-        <div v-else class="hidden md:flex items-center space-x-1">
-            <p>hello</p>
+        <div v-else class="md:flex items-center space-x-1 sm:hidden mobileUser">
+          {{ user.userName }}
+          <button
+            @click="dropdownOpen = !dropdownOpen"
+            class="
+              relative
+              z-10
+              block
+              rounded-md
+              p-2
+              focus:outline-none
+            "
+          >
+            <svg
+              class="h-5 w-5 text-gray-800"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
         </div>
-      
+
         <!-- mobile button goes here -->
         <div class="md:hidden xl:hidden flex items-center">
           <button class="mobile-menu-button">
@@ -136,10 +160,27 @@
     align-self: center;
   }
 }
+@media screen and (max-width: 640px) {
+  .mobileUser {
+    visibility: hidden;
+  }
+}
 </style>
 
   <script>
-document.addEventListener("DOMContentLoaded", function () {
+
+export default {
+  data() {
+    return {
+      enableNavBar: {
+        enableVisitor: true,
+      },
+      user: {},
+    };
+  },
+methods:{
+click(){
+  document.addEventListener("DOMContentLoaded", function () {
   const btn = document.querySelector("button.mobile-menu-button");
   const menu = document.querySelector(".mobile-menu");
 
@@ -147,11 +188,21 @@ document.addEventListener("DOMContentLoaded", function () {
     menu.classList.toggle("hidden");
   });
 });
-export default {
-  data() {
-    return {
-       LoginSuccess: true,
-    };
-  }
+}
+},
+  created() {
+    this.user = JSON.parse(localStorage.getItem("user"));
+    console.log(this.user);
+  },
+
+  watch: {
+    enableRoleNavBar() {
+      if (localStorage.getItem.user == null) {
+        this.user = null;
+      } else {
+        this.user = JSON.parse(localStorage.getItem("user"));
+      }
+    },
+  },
 };
 </script>

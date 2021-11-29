@@ -23,25 +23,24 @@
           </div>
         </div>
       </div>
-      <!-- <nav
+      <nav
         :class="isOpen ? '' : 'hidden'"
         class="sm:flex sm:justify-center sm:items-center mt-4"
       >
         <div class="flex flex-col sm:flex-row">
-          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="/product/HM"
             >H&M</a
           >
           <a
-            @click="filteredUniqlo()"
             class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0"
-            href="#"
+            href="/product/Uniqlo"
             >Uniqlo</a
           >
-          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#"
+          <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="/product/Zara"
             >Zara</a
           >
         </div>
-      </nav> -->
+      </nav>
       <div class="relative mt-6 max-w-lg mx-auto">
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
           <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
@@ -115,12 +114,12 @@
           :sweater="sweater"
         >
           <img
-            class="hover:grow hover:shadow-lg w-72 h-72 object-cover"
+            class="hover:grow hover:shadow-lg w-72 h-72 object-cover lg:self-center sm:self-center mobile"
             :src="`https://walkincloset.ddns.net/backend/Images/Get/${sweater.productId}.jpg`"
             @click="emitShow(sweater.productId)"
           />
           <div class="space-y-2">
-            <p class="text-gray-900 font-bold text-xl Barlow pt-4">
+            <p class="text-gray-900 font-bold text-xl Barlow pt-4 h-16">
               {{ sweater.productName }}
             </p>
             <p class="text-md Barlow font-bold">
@@ -172,6 +171,11 @@
 .Barlow-Medium {
   font-family: Barlow-Medium;
 }
+@media screen and (max-width: 640px) {
+   .mobile {
+    align-self: center;
+  }
+}
 </style>
 
 
@@ -218,7 +222,9 @@ export default {
   computed: {
     filteredSweaterProduct() {
       return this.allSweaterProduct.filter((sweater) =>
-        sweater.productName.toLowerCase().includes(this.searchSweater.toLowerCase())
+        sweater.productName.toLowerCase().includes(this.searchSweater.toLowerCase()) ||
+        sweater.brandId.brandName.toLowerCase().includes(this.searchSweater.toLowerCase()) ||
+         (sweater.productPrice + '').includes(this.searchSweater)
       );
     },
   },

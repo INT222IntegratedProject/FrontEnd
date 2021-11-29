@@ -346,7 +346,7 @@
           </tr>
         </tbody>
       </table>
-      <div v-if="showModal" >
+      <div v-if="showModal">
         <div class="md:w-1/3 sm:w-full rounded-lg shadow-lg bg-white my-3">
           <div class="flex justify-between border-b border-gray-100 px-5 py-4">
             <div>
@@ -446,9 +446,13 @@ export default {
     this.fetchUsers();
   },
   methods: {
-    fetchUsers() {
-      axios
-        .get("https://walkincloset.ddns.net/backend/Users/GetUsers")
+    async fetchUsers() {
+      await axios
+        .get("https://walkincloset.ddns.net/backend/Users/GetUsers", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((res) => {
           this.allUserData = res.data;
           console.log(this.allUserData);
