@@ -535,11 +535,11 @@ export default {
     },
     addProduct() {
       axios
-        .post(
-          this.urlAdd,
-          this.newProduct,
-          { headers: { Authorization: `Bearer ${localStorage.getItem("token")} ` } }
-        )
+        .post(this.urlAdd, this.newProduct, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((response) => {
           console.log(response.data);
           return response.data;
