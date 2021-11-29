@@ -65,7 +65,7 @@
           </div>
         </div>
         <!-- secondary nav -->
-        <div class="hidden md:flex items-center space-x-1">
+        <div v-if="LoginSuccess" class="hidden md:flex items-center space-x-1">
           <a href="/login" class="py-5 px-3">Login</a>
           <a
             href="/register"
@@ -84,6 +84,10 @@
             >Sign up</a
           >
         </div>
+        <div v-else class="hidden md:flex items-center space-x-1">
+            <p>hello</p>
+        </div>
+      
         <!-- mobile button goes here -->
         <div class="md:hidden xl:hidden flex items-center">
           <button class="mobile-menu-button">
@@ -143,5 +147,11 @@ document.addEventListener("DOMContentLoaded", function () {
     menu.classList.toggle("hidden");
   });
 });
-export default {};
+export default {
+  data() {
+    return {
+       LoginSuccess: true,
+    };
+  }
+};
 </script>

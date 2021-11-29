@@ -273,7 +273,7 @@
             <div class="w-full px-3 mb-5">
               <router-link to="/">
                 <button
-                  v-on:click="login()"
+                  @click="submitCheckValidateLogin()"
                   class="
                     block
                     w-full
@@ -375,15 +375,16 @@ export default {
 
   methods: {
     async login() {
-      await axios.post("https://walkincloset.ddns.net/backend/Users/Login", this.user).then((response) => {
-        if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-          localStorage.setItem("token", response.data.token);
-        }
-        return response.data;
-        
-      });
-    },
+        await axios
+          .post("https://walkincloset.ddns.net/backend/authenticate", this.user)
+          .then((response) => {
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("user", JSON.stringify(response.data.users));
+            console.log(response.data.users);
+            console.log(localStorage.getItem("token"));
+            console.log(localStorage.getItem("user"));
+          });
+      },
 
     //  async login() {
     //     await axios
@@ -416,7 +417,7 @@ export default {
       this.invalidPassword =
         this.user.password === "" ? true : false;
     },
-    submitCheckValidate() {
+    submitCheckValidateLogin() {
       this.invalidUsername = this.user.username === "" ? true : false;
       this.invalidPassword =
         this.user.password === "" ? true : false;

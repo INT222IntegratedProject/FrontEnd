@@ -273,7 +273,7 @@
                 </label>
                 <input
                   @blur="validatingFirstname"
-                  v-model="registerUser.userFirstname"
+                  v-model="registerUser.userFirstName"
                   type="text"
                   placeholder="firstname"
                   class="input input-sm input-bordered"
@@ -350,6 +350,7 @@
               <div class="w-full px-3 mb-5">
                 <router-link to="/login">
                   <button
+                  @click="submitCheckValidateRegister()"
                     class="
                       block
                       w-full
@@ -481,7 +482,7 @@ export default {
       this.invalidAddress = this.registerUser.userAddress === "" ? true : false;
     },
 
-    submitCheckValidate() {
+    submitCheckValidateRegister() {
       this.invalidUsername = this.registerUser.userName === "" ? true : false;
       this.invalidPassword =
         this.registerUser.userPassword === "" ? true : false;
