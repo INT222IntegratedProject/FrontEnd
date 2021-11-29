@@ -407,9 +407,7 @@ export default {
     //       });
     //   },
 
-    logout() {
-      localStorage.removeItem("user");
-    },
+    
 
     validatingUsername() {
       this.invalidUsername = this.user.username === "" ? true : false;

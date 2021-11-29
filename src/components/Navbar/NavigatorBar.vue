@@ -86,30 +86,68 @@
         </div>
         <div v-else class="md:flex items-center space-x-1 sm:hidden mobileUser">
           {{ user.userName }}
-          <button
-            @click="dropdownOpen = !dropdownOpen"
-            class="
-              relative
-              z-10
-              block
-              rounded-md
-              p-2
-              focus:outline-none
-            "
-          >
-            <svg
-              class="h-5 w-5 text-gray-800"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
+          <div class="w3-dropdown-hover">
+            <button
+              @click="dropdownOpen = !dropdownOpen"
+              class="relative z-10 block rounded-md p-2 focus:outline-none"
             >
-              <path
-                fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </button>
+              <svg
+                class="h-5 w-5 text-gray-800"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+            <div class="w3-dropdown-content absolute right-0">
+              <a
+                href="#"
+                class="
+                  block
+                  px-4
+                  py-2
+                  text-sm
+                  capitalize
+                  text-gray-700
+                  hover:bg-blue-500 hover:text-white
+                "
+              >
+                your profile
+              </a>
+              <a
+                href="/user-product"
+                class="
+                  block
+                  px-4
+                  py-2
+                  text-sm
+                  capitalize
+                  text-gray-700
+                  hover:bg-blue-500 hover:text-white
+                "
+              >
+                Your products
+              </a>
+              <a
+                @click="logout()"
+                class="
+                  block
+                  px-4
+                  py-2
+                  text-sm
+                  capitalize
+                  text-gray-700
+                  hover:bg-blue-500 hover:text-white
+                "
+              >
+                Sign Out
+              </a>
+            </div>
+          </div>
         </div>
 
         <!-- mobile button goes here -->
@@ -168,7 +206,6 @@
 </style>
 
   <script>
-
 export default {
   data() {
     return {
@@ -178,18 +215,24 @@ export default {
       user: {},
     };
   },
-methods:{
-click(){
-  document.addEventListener("DOMContentLoaded", function () {
-  const btn = document.querySelector("button.mobile-menu-button");
-  const menu = document.querySelector(".mobile-menu");
+  methods: {
+    click() {
+      document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.querySelector("button.mobile-menu-button");
+        const menu = document.querySelector(".mobile-menu");
 
-  btn.addEventListener("click", () => {
-    menu.classList.toggle("hidden");
-  });
-});
-}
-},
+        btn.addEventListener("click", () => {
+          menu.classList.toggle("hidden");
+        });
+      });
+    },
+    async logout() {
+      await localStorage.removeItem("user");
+            localStorage.removeItem("token");
+       window.location.href = "/login";
+    },
+  },
+  
   created() {
     this.user = JSON.parse(localStorage.getItem("user"));
     console.log(this.user);
