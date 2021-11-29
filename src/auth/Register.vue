@@ -238,7 +238,7 @@
                   <span class="label-text Barlow-Medium">Username</span>
                 </label>
                 <input
-                v-model="username"
+                v-model="userName"
                   type="text"
                   placeholder="username"
                   class="input input-sm input-bordered"
@@ -250,7 +250,7 @@
                   <span class="label-text Barlow-Medium">Password</span>
                 </label>
                 <input
-                v-model="password"
+                v-model="userPassword"
                   type="text"
                   placeholder="password"
                   class="input input-sm input-bordered"
@@ -264,7 +264,7 @@
                   <span class="label-text Barlow-Medium">Firstname</span>
                 </label>
                 <input
-                  v-model="firstname"
+                  v-model="userFirstname"
                   type="text"
                   placeholder="firstname"
                   class="input input-sm input-bordered"
@@ -276,7 +276,7 @@
                   <span class="label-text Barlow-Medium">Lastname</span>
                 </label>
                 <input
-                  v-model="lastname"
+                  v-model="userLastname"
                   type="text"
                   placeholder="lastname"
                   class="input input-sm input-bordered"
@@ -289,7 +289,7 @@
                 <span class="label-text Barlow-Medium">Email</span>
               </label>
               <input
-              v-model="email"
+              v-model="userEmail"
                 type="email"
                 placeholder="email"
                 class="input input-sm input-bordered"
@@ -301,7 +301,7 @@
                 <span class="label-text Barlow-Medium">Address</span>
               </label>
               <textarea
-              v-model="address"
+              v-model="userAddress"
                 class="textarea h-24 textarea-bordered"
                 placeholder="Address"
               ></textarea>
@@ -397,31 +397,13 @@ export default {
         roleId:'',
         roleName:'',
       }
-
     }
   },
-  async onSubmit() {
-      await this.$store.dispatch("register", 
-      );
-
-    },
-    async register({ commit, dispatch }, ) {
-      try {
-        let res = await axios.post('https://walkincloset.ddns.net/backend/Roles/Create' + "/user/login", );
-
-        commit("REGISTER_USER", res.data);
-        dispatch("addNotification", {
-          type: "success",
-          message: "register seccess",
-        });
-
-      } catch {
-        dispatch("addNotification", {
-          type: "error",
-          message: "register failed",
-        });
-      }
-    },
+ methods:{
+   register(){
+     axios.post('https://walkincloset.ddns.net/backend/Users/Create')
+   }
+ }
    
 }
 </script>

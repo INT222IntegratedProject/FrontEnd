@@ -364,7 +364,7 @@ export default {
 
   methods: {
     
-   async getToken() {
+   async login() {
       await axios
         .post("https://walkincloset.ddns.net/backend/authenticate", this.user)
         .then((response) => {
@@ -376,15 +376,12 @@ export default {
 
     async getUser(token) {
       const api = "https://walkincloset.ddns.net/backend/Users/Login";
+      console.log(token)
       await axios
-        .get(api, { headers: { Authorization: `Bearer ${token}` } } )
+        .get(api, { headers: { Authorization: `Bearer ${token}` } } , {username: this.user.username} )
         .then((res) => {
           console.log(res.data);
         });
-    },
-
-    login() {
-      this.getToken();
     },
 
     logout() {
