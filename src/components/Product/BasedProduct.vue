@@ -181,11 +181,9 @@
 <script>
 import axios from "axios";
 import ColorBlock from "../../components/Decorate/ColorBlock.vue";
-// import BasedSecond from "../Navbar/SecondNavbar.vue";
 export default {
   components: {
     ColorBlock,
-    // BasedSecond,
   },
   data() {
     return {
@@ -200,22 +198,8 @@ export default {
     };
   },
   props: ["product"],
-  // created() {
-  //   this.fetchProduct();
-
-  // },
 
   created() {
-    // axios
-    //     .get(this.urlAllProduct)
-    //     .then((res) => {
-    //       this.blogs = res.data;
-    //       console.log(this.blogs);
-    //       return res.data;
-    //     })
-    //     .catch((err) => {
-    //       console.error(err);
-    //     });
     this.fetchProduct();
     this.fetchBrands();
   },

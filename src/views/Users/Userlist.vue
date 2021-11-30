@@ -444,7 +444,7 @@ export default {
   },
   created() {
     this.fetchUsers();
-    console.log(this.allUserData)
+    console.log(this.allUserData);
   },
   methods: {
     async fetchUsers() {
@@ -463,18 +463,18 @@ export default {
           console.error(err);
         });
     },
+    deleteUser() {
+      if (confirm("Do you want to delete this user?") === false) {
+        return;
+      }
+      axios
+        .delete(`https://walkincloset.ddns.net/backend/Roles/Delete/${this.id}`)
+        .then((res) => {
+          console.log(res);
+          this.$router.push("/userlist");
+        });
+    },
+    editUserAdmin() {},
   },
-  deleteUser() {
-    if (confirm("Do you want to delete this user?") === false) {
-      return;
-    }
-    axios
-      .delete(`https://walkincloset.ddns.net/backend/Roles/Delete/${this.id}`)
-      .then((res) => {
-        console.log(res);
-        this.$router.push("/userlist");
-      });
-  },
-  editUserAdmin() {},
 };
 </script>

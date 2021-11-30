@@ -283,13 +283,15 @@ export default {
       usernameFeedback: "",
       userId: "",
       addFeedback: {
+        feedbackId:"",
         message: "",
-        usersId: "",
+        usersId: localStorage.getItem("userid"),
         productsId: "",
       },
       urlCreateFeedback:
         "https://walkincloset.ddns.net/backend/Feedback/Create",
       urlDeleteFeedback: `https://walkincloset.ddns.net/backend/Feedback/Delete/${this.id}`,
+      getUserId: "",
     };
   },
   name: "Modal",
@@ -298,16 +300,25 @@ export default {
     this.feedbackById = await this.fetchFeedbackById();
     this.allProduct = await this.fetchProduct();
     this.allColors = await this.fetchColors();
+    this.getUserByid();
+    localStorage.setItem("userid", this.getUserId.userId);
     this.isLoadingProducts = false;
     this.isLoadingColors = false;
     this.isLoadingImages = false;
-    console.log(this.userId);
     this.usernameFeedback = await this.fetchUsernameById();
+    console.log(this.feedbackById)
   },
   methods: {
+    getUserByid() {
+      this.getUserId = JSON.parse(localStorage.getItem("user"));
+    },
     fetchFeedbackById() {
       axios
-        .get(this.urlFeedbackById)
+        .get(this.urlFeedbackById, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((res) => {
           this.feedbackById = res.data;
           this.userId = this.feedbackById.usersId;
@@ -321,7 +332,12 @@ export default {
     fetchUsernameById() {
       axios
         .get(
-          `https://walkincloset.ddns.net/backend/Feedback/GetUserFeedback/${this.userId}`
+          `https://walkincloset.ddns.net/backend/Feedback/GetUserFeedback/${this.userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")} `,
+            },
+          }
         )
         .then((res) => {
           this.usernameFeedback = res.data;
@@ -332,21 +348,38 @@ export default {
         });
     },
     sendFeedback() {
-      axios.post(this.urlCreateFeedback, this.addFeedback);
+      axios
+        .post(this.urlCreateFeedback, this.addFeedback, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
+        .then(function () {
+          console.log("SUCCESS!!");
+        })
+        .catch(function () {
+          console.log("FAILURE!!");
+        });
     },
     deleteFeedback() {
       if (confirm("Do you want to delete this Comment?") === false) {
-        alert("delete success")
+        alert("delete success");
         return;
       }
-      axios.delete(this.urlDeleteFeedback).then((res) => {
-        console.log(res);
-        this.$router.push("/show/:id");
-      });
+      axios
+        .delete(this.urlDeleteFeedback, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          this.$router.push("/show/:id");
+        });
     },
     deleteProduct() {
       if (confirm("Do you want to delete this product?") === false) {
-         alert("delete success")
+        alert("delete success");
         return;
       }
       axios

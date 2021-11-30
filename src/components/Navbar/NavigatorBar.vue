@@ -243,6 +243,7 @@ export default {
     async logout() {
       await localStorage.removeItem("user");
             localStorage.removeItem("token");
+            localStorage.removeItem("userid");
        window.location.href = "/login";
     },
   },

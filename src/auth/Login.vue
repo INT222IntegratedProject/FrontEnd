@@ -387,28 +387,6 @@ export default {
           });
       },
 
-    //  async login() {
-    //     await axios
-    //       .post("https://walkincloset.ddns.net/backend/authenticate", this.user)
-    //       .then((response) => {
-    //         localStorage.setItem("token", response.data.token);
-    //         console.log(localStorage.getItem("token"));
-    //         this.getUser(response.data.token);
-    //       });
-    //   },
-
-    //   async getUser(token) {
-    //     const api = "https://walkincloset.ddns.net/backend/Users/Login";
-    //     console.log(token)
-    //     await axios
-    //       .get(api, { headers: { Authorization: `Bearer ${token}` } } , {username: this.user.username} )
-    //       .then((res) => {
-    //         console.log(res.data);
-    //       });
-    //   },
-
-    
-
     validatingUsername() {
       this.invalidUsername = this.user.username === "" ? true : false;
     },

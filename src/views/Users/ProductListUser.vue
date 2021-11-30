@@ -346,7 +346,7 @@
           </tr>
         </tbody>
       </table>
-      <div v-if="showModal" >
+      <div v-if="showModal">
         <div class="md:w-1/3 sm:w-full rounded-lg shadow-lg bg-white my-3">
           <div class="flex justify-between border-b border-gray-100 px-5 py-4">
             <div>
@@ -434,15 +434,28 @@ tr th:nth-child(1) {
 </style>
 
 <script>
-
-export default{
-    data(){
-        return{
-
-        }
-    }
-    
-    
-}
- 
+import axios from 'axios'
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    async fetchUsers() {
+      await axios
+        .get("https://walkincloset.ddns.net/backend/Users/GetUsers", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
+        .then((res) => {
+          this.allUserData = res.data;
+          console.log(this.allUserData);
+          return res.data;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+  },
+};
 </script>
