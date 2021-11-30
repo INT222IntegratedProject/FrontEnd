@@ -432,7 +432,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.$router.push("/userlist");
+          this.$forceUpdate("/userlist");
         });
     },
   },

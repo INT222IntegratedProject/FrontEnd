@@ -307,19 +307,6 @@
               >
             </div>
             <br />
-            <div>
-              <span> don't want to login ? </span>
-              <a
-                href="/product"
-                class="
-                  Barlow-Medium
-                  text-md text-indigo-600
-                  underline
-                  hover:text-indigo-800
-                "
-                >back to product page</a
-              >
-            </div>
           </div>
         </div>
       </div>

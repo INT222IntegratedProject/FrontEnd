@@ -137,7 +137,7 @@
               </div>
               <div class="pt-4">
                 <button
-                  @click="deleteProduct"
+                  @click.prevent="deleteProduct()"
                   type="submit"
                   class="
                     uppercase
@@ -176,7 +176,6 @@
           </h2>
           <div class="w-full md:w-full px-3 mb-2 mt-2">
             <textarea
-              v-model="addFeedback.message"
               class="
                 bg-gray-100
                 rounded
@@ -277,62 +276,51 @@ export default {
       },
       urlProduct: `https://walkincloset.ddns.net/backend/Products/Edit/${this.id}`,
       urlDelete: `https://walkincloset.ddns.net/backend/Products/Delete/${this.id}`,
-      urlFeedbackById: `https://walkincloset.ddns.net/backend/Feedback/GetFeedback/${this.id}`,
       feedbackById: [],
       urlFeedbackUsername: `https://walkincloset.ddns.net/backend/Feedback/GetUserFeedback/${this.userId}`,
       usernameFeedback: "",
-      userId: "",
-      addFeedback: {
-        feedbackId:"",
-        message: "",
-        usersId: localStorage.getItem("userid"),
-        productsId: "",
-      },
-      urlCreateFeedback:
-        "https://walkincloset.ddns.net/backend/Feedback/Create",
-      urlDeleteFeedback: `https://walkincloset.ddns.net/backend/Feedback/Delete/${this.id}`,
+      // userId: "",
       getUserId: "",
     };
   },
   name: "Modal",
   props: ["id"],
   async created() {
-    this.feedbackById = await this.fetchFeedbackById();
     this.allProduct = await this.fetchProduct();
+    this.feedbackById = await this.fetchFeedbackById();
     this.allColors = await this.fetchColors();
-    this.getUserByid();
-    localStorage.setItem("userid", this.getUserId.userId);
     this.isLoadingProducts = false;
     this.isLoadingColors = false;
     this.isLoadingImages = false;
-    this.usernameFeedback = await this.fetchUsernameById();
-    console.log(this.feedbackById)
+
+    console.log(this.allProduct.productId);
   },
   methods: {
-    getUserByid() {
-      this.getUserId = JSON.parse(localStorage.getItem("user"));
-    },
     fetchFeedbackById() {
       axios
-        .get(this.urlFeedbackById, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")} `,
-          },
-        })
+        .get(
+          `https://walkincloset.ddns.net/backend/Feedback/GetFeedback/${this.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")} `,
+            },
+          }
+        )
         .then((res) => {
           this.feedbackById = res.data;
           this.userId = this.feedbackById.usersId;
-          console.log(this.feedbackById);
+          this.fetchUsernameById(this.userId)
+          console.log(this.userId);
           return res.data;
         })
         .catch((err) => {
           console.error(err);
         });
     },
-    fetchUsernameById() {
+    fetchUsernameById(userId) {
       axios
         .get(
-          `https://walkincloset.ddns.net/backend/Feedback/GetUserFeedback/${this.userId}`,
+          `https://walkincloset.ddns.net/backend/Feedback/GetUserFeedback/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")} `,
@@ -345,36 +333,6 @@ export default {
         })
         .catch((err) => {
           console.error(err);
-        });
-    },
-    sendFeedback() {
-      axios
-        .post(this.urlCreateFeedback, this.addFeedback, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")} `,
-          },
-        })
-        .then(function () {
-          console.log("SUCCESS!!");
-        })
-        .catch(function () {
-          console.log("FAILURE!!");
-        });
-    },
-    deleteFeedback() {
-      if (confirm("Do you want to delete this Comment?") === false) {
-        alert("delete success");
-        return;
-      }
-      axios
-        .delete(this.urlDeleteFeedback, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")} `,
-          },
-        })
-        .then((res) => {
-          console.log(res);
-          this.$router.push("/show/:id");
         });
     },
     deleteProduct() {
@@ -393,6 +351,7 @@ export default {
           this.$router.push("/product");
         });
     },
+
     emitProduct(product) {
       this.$router.push({ name: "Edit", params: { id: product } });
     },

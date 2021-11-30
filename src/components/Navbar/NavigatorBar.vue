@@ -6,7 +6,7 @@
           <!-- logo -->
           <div>
             <a
-              href="/"
+              href="/home"
               class="
                 flex
                 items-center

@@ -277,12 +277,12 @@
           <div v-for="color in allColors" :key="color.colorId">
             <input
               type="checkbox"
-              id="color"
               :value="color"
               v-model="newProduct.productColors"
             />
             <label for="color">{{ color.colorId }}</label>
           </div>
+
         </div>
         <div class="w-full mx-2 flex-1 svelte-1l8159u">
           <div
@@ -335,6 +335,7 @@
               leading-8
               uppercase
             "
+            id="checkbox"
           >
             Image
           </div>
@@ -448,7 +449,6 @@ export default {
       invalidGender: false,
       invalidDate: false,
       invalidBrandName: false,
-      invalidColor: false,
     };
   },
   async created() {
@@ -516,9 +516,6 @@ export default {
       this.invalidBrandName =
         this.newProduct.brandId.brandName === "" ? true : false;
     },
-    validatingColor() {
-      this.invalidColor = this.newProduct.productColors === "" ? true : false;
-    },
     submitCheckValidate() {
       this.invalidName = this.newProduct.productName === "" ? true : false;
       this.invalidType = this.newProduct.productType === "" ? true : false;
@@ -529,7 +526,6 @@ export default {
       this.invalidDate = this.newProduct.date === "" ? true : false;
       this.invalidBrandName =
         this.newProduct.brandId.brandName === "" ? true : false;
-      this.invalidColor = this.newProduct.productColors === null ? true : false;
       if (
         this.invalidName ||
         this.invalidType ||
@@ -537,10 +533,13 @@ export default {
         this.invalidPrice ||
         this.invalidGender ||
         this.invalidDate ||
-        this.invalidBrandName ||
-        this.invalidColor
+        this.invalidBrandName 
       ) {
+        if(this.newProduct.productColors == []){
+          alert("you need to check the color box")
+        }
         console.log("Error");
+        
       } else {
         this.addProduct();
       }
