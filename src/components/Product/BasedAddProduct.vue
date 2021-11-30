@@ -431,7 +431,7 @@ export default {
         productName: "",
         productType: "",
         productDescription: "",
-        productPrice: 0,
+        productPrice: null,
         productGender: "",
         date: "",
         brandId: {
@@ -448,6 +448,7 @@ export default {
       invalidGender: false,
       invalidDate: false,
       invalidBrandName: false,
+      invalidColor: false,
     };
   },
   async created() {
@@ -477,7 +478,7 @@ export default {
       axios
         .post(
           `https://walkincloset.ddns.net/backend/Images/upload/` + (newId + 1),
-          formData ,
+          formData,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")} `,
@@ -515,6 +516,9 @@ export default {
       this.invalidBrandName =
         this.newProduct.brandId.brandName === "" ? true : false;
     },
+    validatingColor() {
+      this.invalidColor = this.newProduct.productColors === "" ? true : false;
+    },
     submitCheckValidate() {
       this.invalidName = this.newProduct.productName === "" ? true : false;
       this.invalidType = this.newProduct.productType === "" ? true : false;
@@ -525,6 +529,7 @@ export default {
       this.invalidDate = this.newProduct.date === "" ? true : false;
       this.invalidBrandName =
         this.newProduct.brandId.brandName === "" ? true : false;
+      this.invalidColor = this.newProduct.productColors === null ? true : false;
       if (
         this.invalidName ||
         this.invalidType ||
@@ -532,7 +537,8 @@ export default {
         this.invalidPrice ||
         this.invalidGender ||
         this.invalidDate ||
-        this.invalidBrandName
+        this.invalidBrandName ||
+        this.invalidColor
       ) {
         console.log("Error");
       } else {
