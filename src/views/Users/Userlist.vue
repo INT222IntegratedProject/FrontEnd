@@ -410,7 +410,7 @@ export default {
         return;
       }
       axios
-        .delete(`https://walkincloset.ddns.net/backend/Roles/Delete/${this.id}` ,{
+        .delete(`https://walkincloset.ddns.net/backend/Users/Delete/${this.id}` ,{
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")} `,
           },
