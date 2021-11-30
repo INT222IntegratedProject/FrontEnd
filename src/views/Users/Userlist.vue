@@ -426,7 +426,7 @@ export default {
         return;
       }
       await axios
-        .post(`https://walkincloset.ddns.net/Users/EditRole/${userid}` ,{
+        .put(`https://walkincloset.ddns.net/Users/EditRole/${userid}` ,{
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")} `,
           },
