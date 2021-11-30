@@ -199,6 +199,9 @@
       <a href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >About Us</a
       >
+       <a @click="logout()" class="block py-2 px-4 text-sm hover:bg-gray-200"
+        >Logout</a
+      >
     </div>
   </nav>
 </template>

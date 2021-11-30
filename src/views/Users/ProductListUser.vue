@@ -94,6 +94,7 @@
     </div>
     <div
       class="
+      overflow-x:auto;
         align-middle
         inline-block
         min-w-full

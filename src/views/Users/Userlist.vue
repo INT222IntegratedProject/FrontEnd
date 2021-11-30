@@ -94,6 +94,7 @@
     </div>
     <div
       class="
+      overflow-x:auto;
         align-middle
         inline-block
         min-w-full
@@ -206,7 +207,7 @@
 
         <!-- Column -->
         <tbody
-          class="bg-white"
+          class="bg-white "
           v-for="user in allUserData"
           :key="user.id"
           :product="user"
@@ -304,7 +305,7 @@
                   "
                 >
                   <svg
-                    @click="showModal = true"
+                    @click.prevent="editUserRole()"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -327,7 +328,7 @@
                   "
                 >
                   <svg
-                    @click="deleteUser()"
+                    @click.prevent="deleteUser()"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -346,66 +347,7 @@
           </tr>
         </tbody>
       </table>
-      <div v-if="showModal">
-        <div class="md:w-1/3 sm:w-full rounded-lg shadow-lg bg-white my-3">
-          <div class="flex justify-between border-b border-gray-100 px-5 py-4">
-            <div>
-              <i class="fa fa-exclamation-triangle text-orange-500"></i>
-              <span class="font-bold text-gray-700 text-lg">Warning</span>
-            </div>
-            <div>
-              <button>
-                <i
-                  class="
-                    fa fa-times-circle
-                    text-red-500
-                    hover:text-red-600
-                    transition
-                    duration-150
-                  "
-                ></i>
-              </button>
-            </div>
-          </div>
-
-          <div class="px-10 py-5 text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipi scing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </div>
-
-          <div class="px-5 py-4 flex justify-end">
-            <button
-              class="
-                bg-orange-500
-                mr-1
-                rounded
-                text-sm
-                py-2
-                px-3
-                text-white
-                hover:bg-orange-600
-                transition
-                duration-150
-              "
-            >
-              Cancel
-            </button>
-            <button
-              class="
-                text-sm
-                py-2
-                px-3
-                text-gray-500
-                hover:text-gray-600
-                transition
-                duration-150
-              "
-            >
-              OK
-            </button>
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
 </template>
@@ -468,13 +410,31 @@ export default {
         return;
       }
       axios
-        .delete(`https://walkincloset.ddns.net/backend/Roles/Delete/${this.id}`)
+        .delete(`https://walkincloset.ddns.net/backend/Roles/Delete/${this.id}` ,{
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((res) => {
           console.log(res);
           this.$router.push("/userlist");
         });
     },
-    editUserAdmin() {},
+    editUserRole() {
+      if (confirm("Do you want to change role this user to Admin ?") === false) {
+        return;
+      }
+      axios
+        .put(`` ,{
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          this.$router.push("/userlist");
+        });
+    },
   },
 };
 </script>
