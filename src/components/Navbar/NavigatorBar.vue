@@ -116,7 +116,21 @@
                   hover:bg-blue-500 hover:text-white
                 "
               >
-                your profile
+                edit profile
+              </a>
+               <a
+                href="/userlist"
+                class="
+                  block
+                  px-4
+                  py-2
+                  text-sm
+                  capitalize
+                  text-gray-700
+                  hover:bg-blue-500 hover:text-white
+                "
+              >
+                edit user
               </a>
               <a
                 href="/user-product"
@@ -187,6 +201,7 @@
     </div>
     <!-- mobile menu -->
     <div class="mobile-menu hidden mobile">
+      {{ user.userName }}
       <a href="/product" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >Store</a
       >
@@ -198,6 +213,9 @@
       >
       <a href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >About Us</a
+      >
+      <a href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200"
+        >Edit User</a
       >
        <a @click="logout()" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >Logout</a

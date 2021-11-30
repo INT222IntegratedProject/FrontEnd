@@ -153,21 +153,6 @@ const routes = [{
     // }
 },
 {
-    path: '/user-product',
-    name: 'UserProduct',
-    component: () =>
-        import('../views/Users/ProductListUser.vue'),
-    beforeEnter: (to, from, next) => {
-        let user = JSON.parse(localStorage.getItem("user"))
-        if (user == null) {
-            return next({
-                name: 'login'
-            })
-        }
-        next()
-    }
-},
-{
     path: '/edituser',
     name: 'Editusert',
     component: () =>

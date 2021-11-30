@@ -305,7 +305,7 @@
                   "
                 >
                   <svg
-                    @click.prevent="editUserRole()"
+                    @click.prevent="editUserRole(user.userId)"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -328,7 +328,7 @@
                   "
                 >
                   <svg
-                    @click.prevent="deleteUser()"
+                    @click.prevent="deleteUser(user.userId)"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -405,27 +405,28 @@ export default {
           console.error(err);
         });
     },
-    deleteUser() {
+    deleteUser(userid) {
       if (confirm("Do you want to delete this user?") === false) {
         return;
       }
       axios
-        .delete(`https://walkincloset.ddns.net/backend/Users/Delete/${this.id}` ,{
+        .delete(`https://walkincloset.ddns.net/Users/Delete/${userid}` ,{
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")} `,
           },
         })
         .then((res) => {
+          alert("It delete success")
           console.log(res);
           this.$router.push("/userlist");
         });
     },
-    editUserRole() {
+    async editUserRole(userid) {
       if (confirm("Do you want to change role this user to Admin ?") === false) {
         return;
       }
-      axios
-        .put(`` ,{
+      await axios
+        .post(`https://walkincloset.ddns.net/Users/EditRole/${userid}` ,{
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")} `,
           },
