@@ -8,41 +8,7 @@
       >
         Edit User
       </h2>
-      <form action="">
-        <!--       flex - asjad korvuti, nb! flex-1 - element kogu ylejaanud laius -->
-        <div class="flex items-center mb-5">
-          <!--         tip - here neede inline-block , but why? -->
-          <label
-            for="name"
-            class="
-              inline-block
-              w-20
-              mr-6
-              text-right
-              font-bold
-              text-gray-600
-              Barlow-Medium
-            "
-            >UserId</label
-          >
-          <input
-            v-model="getUser.userId"
-            type="text"
-            id="name"
-            name="name"
-            placeholder="UserId"
-            class="
-              flex-1
-              py-2
-              border-b-2 border-gray-400
-              focus:border-green-400
-              text-gray-600
-              placeholder-gray-400
-              outline-none
-            "
-          />
-        </div>
-
+      <form @submit.prevent="editUser()">
         <div class="flex items-center mb-5">
           <!--         tip - here neede inline-block , but why? -->
           <label
@@ -59,7 +25,7 @@
             >Firstname</label
           >
           <input
-            v-model="getUser.userFirstName"
+            v-model="user.userFirstName"
             type="text"
             id="Firstname"
             name="Firstname"
@@ -92,7 +58,7 @@
             >Lastname</label
           >
           <input
-            v-model="getUser.userLastname"
+            v-model="user.userLastName"
             type="text"
             id="Lastname"
             name="Lastname"
@@ -124,7 +90,7 @@
             >Username</label
           >
           <input
-            v-model="getUser.userName"
+            v-model="user.userName"
             type="text"
             id="Username"
             name="Username"
@@ -157,7 +123,7 @@
             >Password</label
           >
           <input
-            v-model="getUser.userPassword"
+            v-model="user.userPassword"
             type="password"
             id="password"
             name="password"
@@ -190,7 +156,7 @@
             >Email</label
           >
           <input
-            v-model="getUser.userEmail"
+            v-model="user.userEmail"
             type="Email"
             id="Email"
             name="Email"
@@ -223,7 +189,7 @@
             >Phone</label
           >
           <input
-            v-model="getUser.userTel"
+            v-model="user.userTel"
             type="text"
             id="Phone"
             name="Phone"
@@ -256,7 +222,7 @@
             >Address</label
           >
           <input
-            v-model="getUser.userAddress"
+            v-model="user.userAddress"
             type="text"
             id="Address"
             name="Address"
@@ -304,7 +270,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      getUser: {
+      user: {
         userId: "",
         userFirstname: "",
         userLastname: "",
@@ -317,35 +283,47 @@ export default {
           roleName: "",
         },
       },
-      userById: [],
+      urlEditUser: `https://walkincloset.ddns.net/backend/Users/Edit/${localStorage.getItem(
+        "userid"
+      )}`,
+      urlGetUserById: `https://walkincloset.ddns.net/backend/Users/GetUsers/${localStorage.getItem(
+        "userid"
+      )}`,
+      getUserId: "",
     };
   },
   created() {
-    this.fetchUsers();
-    console.log(this.userById);
+    this.fetchUserById()
+    this.getUserByid();
+    localStorage.setItem("userid", this.getUserId.userId);
   },
   methods: {
-    fetchUsers() {
-      axios
-        .get(`https://walkincloset.ddns.net/backend/Roles/GetRoles/`)
-        .then((res) => {
-          this.userById = res.data;
-          console.log(this.userById);
+    getUserByid() {
+      this.getUserId = JSON.parse(localStorage.getItem("user"));
+    },
+    fetchUserById() {
+      axios.get(this.urlGetUserById, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")} `,
+        },
+      }).then((res) => {
+          this.user = res.data;
+          console.log(this.user);
           return res.data;
         })
         .catch((err) => {
           console.error(err);
         });
     },
- 
     editUser() {
       axios
-        .put(this.urlEditProduct, this.getUser)
+        .put(this.urlEditUser, this.user, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((response) => {
           return response.data;
-        })
-        .then(() => {
-          this.editPic();
         })
         .then(() => {
           window.location.href = "/";
@@ -353,7 +331,6 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-      console.log(this.getProduct);
     },
   },
 };
