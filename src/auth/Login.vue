@@ -260,7 +260,7 @@
               <input
                 @blur="validatingPassword"
                 v-model="user.password"
-                type="text"
+                type="password"
                 placeholder="password"
                 class="input input-bordered"
               />

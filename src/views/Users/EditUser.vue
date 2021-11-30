@@ -317,27 +317,30 @@ export default {
           roleName: "",
         },
       },
+      userById: [],
     };
   },
   created() {
     this.fetchUsers();
+    console.log(this.userById);
   },
   methods: {
     fetchUsers() {
       axios
-        .get("https://walkincloset.ddns.net/backend/Users/GetUsers")
+        .get(`https://walkincloset.ddns.net/backend/Roles/GetRoles/`)
         .then((res) => {
-          this.getUser = res.data;
-          console.log(this.getUser);
+          this.userById = res.data;
+          console.log(this.userById);
           return res.data;
         })
         .catch((err) => {
           console.error(err);
         });
     },
+ 
     editUser() {
       axios
-        .put(this.urlEditProduct, this.getProduct)
+        .put(this.urlEditProduct, this.getUser)
         .then((response) => {
           return response.data;
         })

@@ -336,6 +336,7 @@ export default {
     },
     deleteFeedback() {
       if (confirm("Do you want to delete this Comment?") === false) {
+        alert("delete success")
         return;
       }
       axios.delete(this.urlDeleteFeedback).then((res) => {
@@ -345,6 +346,7 @@ export default {
     },
     deleteProduct() {
       if (confirm("Do you want to delete this product?") === false) {
+         alert("delete success")
         return;
       }
       axios

@@ -256,7 +256,7 @@
                 <input
                   @blur="validatingPassword"
                   v-model="registerUser.userPassword"
-                  type="text"
+                  type="password"
                   placeholder="password"
                   class="input input-sm input-bordered"
                 />
@@ -312,8 +312,8 @@
                 class="input input-sm input-bordered"
               />
               <h6 v-if="invalidEmail" class="text-red-500 text-sm">
-                  email can't be blank
-                </h6>
+                email can't be blank
+              </h6>
             </div>
             <!-- Tel -->
             <div class="form-control">
@@ -323,13 +323,13 @@
               <input
                 @blur="validatingTel"
                 v-model="registerUser.userTel"
-                type="email"
-                placeholder="email"
+                type="text"
+                placeholder="tel"
                 class="input input-sm input-bordered"
               />
               <h6 v-if="invalidTel" class="text-red-500 text-sm">
-                  tel can't be blank
-                </h6>
+                tel can't be blank
+              </h6>
             </div>
             <!-- Address -->
             <div class="form-control">
@@ -343,32 +343,30 @@
                 placeholder="Address"
               ></textarea>
               <h6 v-if="invalidAddress" class="text-red-500 text-sm">
-                  address can't be blank
-                </h6>
+                address can't be blank
+              </h6>
             </div>
             <div class="flex -mx-3">
               <div class="w-full px-3 mb-5">
-                <router-link to="/login">
-                  <button
+                <button
                   @click="submitCheckValidateRegister()"
-                    class="
-                      block
-                      w-full
-                      max-w-xs
-                      mx-auto
-                      bg-indigo-500
-                      hover:bg-indigo-700
-                      focus:bg-indigo-700
-                      text-white
-                      rounded-lg
-                      px-3
-                      py-3
-                      Barlow-Medium
-                    "
-                  >
-                    REGISTER
-                  </button>
-                </router-link>
+                  class="
+                    block
+                    w-full
+                    max-w-xs
+                    mx-auto
+                    bg-indigo-500
+                    hover:bg-indigo-700
+                    focus:bg-indigo-700
+                    text-white
+                    rounded-lg
+                    px-3
+                    py-3
+                    Barlow-Medium
+                  "
+                >
+                  REGISTER
+                </button>
               </div>
             </div>
           </div>
@@ -451,11 +449,15 @@ export default {
     };
   },
   methods: {
-    register() {
-      axios.post(this.urlRegister, this.registerUser).then((response) => {
-        console.log(response.data);
-        return response.data;
-      });
+    async register() {
+      await axios
+        .post(this.urlRegister, this.registerUser)
+        .then((response) => {
+          return response.data;
+        })
+        .then(() => {
+          window.location.href = "/login";
+        });
     },
     validatingUsername() {
       this.invalidUsername = this.registerUser.userName === "" ? true : false;

@@ -444,6 +444,7 @@ export default {
   },
   created() {
     this.fetchUsers();
+    console.log(this.allUserData)
   },
   methods: {
     async fetchUsers() {

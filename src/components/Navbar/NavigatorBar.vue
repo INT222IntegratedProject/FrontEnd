@@ -105,7 +105,7 @@
             </button>
             <div class="w3-dropdown-content absolute right-0">
               <a
-                href="#"
+                href="/edituser"
                 class="
                   block
                   px-4
