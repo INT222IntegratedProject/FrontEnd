@@ -384,8 +384,8 @@ export default {
       showModal: false,
     };
   },
-  created() {
-    this.fetchUsers();
+  async created() {
+    await this.fetchUsers();
     console.log(this.allUserData);
   },
   methods: {
@@ -410,23 +410,22 @@ export default {
         return;
       }
       axios
-        .delete(`https://walkincloset.ddns.net/Users/Delete/${userid}` ,{
+        .delete(`https://walkincloset.ddns.net/backend/Users/Delete/${userid}` ,{
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")} `,
           },
         })
         .then((res) => {
-          alert("It delete success")
           console.log(res);
           this.$router.push("/userlist");
         });
     },
-    async editUserRole(userid) {
+    editUserRole(userid) {
       if (confirm("Do you want to change role this user to Admin ?") === false) {
         return;
       }
-      await axios
-        .put(`https://walkincloset.ddns.net/Users/EditRole/${userid}` ,{
+      axios
+        .post(`https://walkincloset.ddns.net/backend/Users/EditRole/${userid}` ,{
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")} `,
           },
