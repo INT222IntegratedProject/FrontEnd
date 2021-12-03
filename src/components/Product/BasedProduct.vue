@@ -113,7 +113,7 @@
         >
           <img
             class="hover:grow hover:shadow-lg w-72 h-72 object-cover lg:self-center sm:self-center mobile"
-            :src="`https://walkincloset.ddns.net/backend/Images/Get/${product.productId}.jpg`"
+            :src="`https://walkincloset.ddns.net/backend/Images/Get/${product.productId}.jpg`" 
             @click="emitShow(product.productId)"
           />
           <div class="space-y-2">

@@ -1,6 +1,6 @@
 <template>
-    <div class="carousel rounded relative overflow-hidden  px-24 py-24">
-        <div class="carousel-inner relative overflow-hidden w-full sm:w-5/8">
+    <div class="carousel rounded relative overflow-hidden   px-24 py-24">
+        <div class="carousel-inner relative overflow-hidden w-full hidden md:w-5/8 md:block">
           <!--Slide 1-->
           <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden=""
             checked="checked">

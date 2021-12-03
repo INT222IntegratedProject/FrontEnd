@@ -491,6 +491,7 @@ export default {
         })
         .catch(function () {
           console.log("FAILURE!!");
+          window.alert("cannot add product")
         });
     },
     validatingName() {
@@ -567,7 +568,11 @@ export default {
     async fetchColors() {
       const res = await fetch(
         "https://walkincloset.ddns.net/backend/Colors/GetColors"
-      );
+      , {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        });
       const data = await res.json();
       console.log(data);
       this.isLoadingColors = false;
@@ -576,7 +581,11 @@ export default {
     async fetchBrands() {
       const res = await fetch(
         "https://walkincloset.ddns.net/backend/Brands/GetBrands"
-      );
+      , {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        });
       const data = await res.json();
       this.isLoadingBrands = false;
       return data;
@@ -585,7 +594,11 @@ export default {
     async fetchProducts() {
       const res = await fetch(
         `https://walkincloset.ddns.net/backend/Products/GetProducts`
-      );
+     ,{
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        } );
       const data = await res.json();
       console.log(data);
       return data;

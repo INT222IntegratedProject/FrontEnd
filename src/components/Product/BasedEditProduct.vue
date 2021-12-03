@@ -298,6 +298,10 @@ export default {
       axios
         .put(this.urlEditImage, formdata, {
           "Content-Type": "multipart/form-data",
+        } , {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
         })
         .then((response) => {
           return response.data;
@@ -330,7 +334,11 @@ export default {
       const requestColor = axios.get(this.urlGetColor);
       const requestProduct = axios.get(this.urlGetProduct);
       axios
-        .all([requestBrand, requestColor, requestProduct])
+        .all([requestBrand, requestColor, requestProduct],{
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then(
           axios.spread((...responses) => {
             return responses;
@@ -396,6 +404,7 @@ export default {
         this.invalidColor
       ) {
         console.log("Error");
+        window.alert("cannot edit product")
       } else {
         this.editProduct();
       }
