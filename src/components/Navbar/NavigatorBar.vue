@@ -133,20 +133,6 @@
                 edit user
               </a>
               <a
-                href="/user-product"
-                class="
-                  block
-                  px-4
-                  py-2
-                  text-sm
-                  capitalize
-                  text-gray-700
-                  hover:bg-blue-500 hover:text-white
-                "
-              >
-                Your products
-              </a>
-              <a
                 href="/addproduct"
                 class="
                   block
