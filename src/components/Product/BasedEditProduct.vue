@@ -517,7 +517,7 @@ export default {
     
     async fetchColors() {
       await axios
-        .get(this.urlGetColor, {
+        .get(this.urlGetColor, { 
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")} `,
           },
