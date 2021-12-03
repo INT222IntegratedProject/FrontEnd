@@ -279,7 +279,9 @@ export default {
     };
   },
   created() {
-    this.fetch();
+     this.allColors = await this.fetchColors();
+    this.allBrands = await this.fetchBrands();
+    this.allProducts = await this.fetchProducts();
   },
   methods: {
     handlePic() {
@@ -329,32 +331,43 @@ export default {
         });
       console.log(this.getProduct);
     },
-    fetch() {
-      const requestBrand = axios.get(this.urlGetBrand);
-      const requestColor = axios.get(this.urlGetColor);
-      const requestProduct = axios.get(this.urlGetProduct);
-      axios
-        .all([requestBrand, requestColor, requestProduct],{
+    async fetchColors() {
+      const res = await fetch(
+        "https://walkincloset.ddns.net/backend/Colors/GetColors"
+      , {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")} `,
           },
-        })
-        .then(
-          axios.spread((...responses) => {
-            return responses;
-          })
-        )
-        .then((data) => {
-          this.getBrandArray = data[0].data;
-          this.getColorArray = data[1].data;
-          this.getProduct = data[2].data;
-          console.log(this.getBrandArray);
-          console.log(this.getColorArray);
-          console.log(this.getProduct);
-        })
-        .catch((errors) => {
-          console.log(errors);
         });
+      const data = await res.json();
+      console.log(data);
+      this.isLoadingColors = false;
+      return data;
+    },
+    async fetchBrands() {
+      const res = await fetch(
+        "https://walkincloset.ddns.net/backend/Brands/GetBrands"
+      , {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        });
+      const data = await res.json();
+      this.isLoadingBrands = false;
+      return data;
+    },
+
+    async fetchProducts() {
+      const res = await fetch(
+        `https://walkincloset.ddns.net/backend/Products/GetProducts`
+     ,{
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        } );
+      const data = await res.json();
+      console.log(data);
+      return data;
     },
     validatingName() {
       this.invalidName = this.getProduct.productName === "" ? true : false;
