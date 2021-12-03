@@ -278,7 +278,7 @@ export default {
       invalidBrandName: false,
     };
   },
-  created() {
+ async created() {
      this.allColors = await this.fetchColors();
     this.allBrands = await this.fetchBrands();
     this.allProducts = await this.fetchProducts();
