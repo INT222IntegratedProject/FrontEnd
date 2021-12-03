@@ -18,7 +18,7 @@ pipeline {
                            sh 'docker rm frontend'
                            sh 'docker image rm frontend'
                     }else {
-                        echo 'Skip this stage '
+                        echo 'Skip to next stage'
                     }
                 }
             }
