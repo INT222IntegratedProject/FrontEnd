@@ -206,7 +206,11 @@ export default {
     },
     fetchShirtProduct() {
       axios
-        .get(this.urlShirt)
+        .get(this.urlShirt , {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((res) => {
           this.allShirtProduct = res.data;
           console.log(this.allShirtProduct);

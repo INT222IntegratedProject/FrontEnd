@@ -203,7 +203,11 @@ export default {
     },
     fetchMaleProduct() {
       axios
-        .get(this.urlMale)
+        .get(this.urlMale , {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((res) => {
           this.allMaleProduct = res.data;
           console.log(this.allMaleProduct);

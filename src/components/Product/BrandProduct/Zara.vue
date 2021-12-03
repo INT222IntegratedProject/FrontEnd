@@ -200,7 +200,11 @@ export default {
     },
     fetchZaraProduct() {
       axios
-        .get(this.urlZara)
+        .get(this.urlZara , {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((res) => {
           this.allZaraProduct = res.data;
           console.log(this.allZaraProduct);

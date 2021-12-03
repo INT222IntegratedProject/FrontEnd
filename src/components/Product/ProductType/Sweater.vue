@@ -206,7 +206,11 @@ export default {
     },
     fetchSweaterProduct() {
       axios
-        .get(this.urlSweater)
+        .get(this.urlSweater , {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((res) => {
           this.allSweaterProduct = res.data;
           console.log(this.allSweaterProduct);

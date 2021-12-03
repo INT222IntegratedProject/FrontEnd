@@ -309,7 +309,7 @@ export default {
         .then((res) => {
           this.feedbackById = res.data;
           this.userId = this.feedbackById.usersId;
-          this.fetchUsernameById(this.userId)
+          this.fetchUsernameById(this.userId);
           console.log(this.userId);
           return res.data;
         })
@@ -357,7 +357,12 @@ export default {
     },
     async fetchProduct() {
       const res = await fetch(
-        `https://walkincloset.ddns.net/backend/Products/GetProducts/${this.id}`
+        `https://walkincloset.ddns.net/backend/Products/GetProducts/${this.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        }
       );
       const data = await res.json();
       console.log(data);
@@ -365,7 +370,12 @@ export default {
     },
     async fetchColors() {
       const res = await fetch(
-        "https://walkincloset.ddns.net/backend/Colors/GetColors"
+        "https://walkincloset.ddns.net/backend/Colors/GetColors",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        }
       );
       const data = await res.json();
       console.log(data);

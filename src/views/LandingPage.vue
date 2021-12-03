@@ -3,9 +3,9 @@
     <based-navbar />
     <based-home />
     <based-brand />
-    <based-preview/>
-    
-   <based-footer/>
+    <based-preview />
+
+    <based-footer />
   </div>
 </template>
 
@@ -14,8 +14,8 @@
 import axios from "axios";
 import BasedHome from "../components/Decorate/BasedHome.vue";
 import BasedBrand from "../components/Decorate/BasedBrand.vue";
-import BasedFooter from "../components/Footer/Footer.vue"
-import BasedPreview from "../components/Decorate/Preview.vue"
+import BasedFooter from "../components/Footer/Footer.vue";
+import BasedPreview from "../components/Decorate/Preview.vue";
 // import ColorBlock from "../components/ColorBlock.vue";
 export default {
   data() {
@@ -39,7 +39,11 @@ export default {
   methods: {
     fetchProduct() {
       axios
-        .get(this.urlProduct)
+        .get(this.urlProduct, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((res) => {
           this.productData = res.data;
           console.log(this.productData);
@@ -50,7 +54,14 @@ export default {
         });
     },
     async fetchColors() {
-      const res = await fetch("https://walkincloset.ddns.net/backend/Colors/GetColors");
+      const res = await fetch(
+        "https://walkincloset.ddns.net/backend/Colors/GetColors",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        }
+      );
       const data = await res.json();
       console.log(data);
       return data;

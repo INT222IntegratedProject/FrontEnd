@@ -209,7 +209,11 @@ export default {
     },
     fetchProduct() {
       axios
-        .get(this.urlAllProduct)
+        .get(this.urlAllProduct , {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((res) => {
           this.allProductData = res.data;
           console.log(this.allProductData);
@@ -224,7 +228,11 @@ export default {
       const requestHm = axios.get(this.urlHm);
       const requestZara = axios.get(this.urlZara);
       axios
-        .all([requestUniqlo, requestHm, requestZara])
+        .all([requestUniqlo, requestHm, requestZara] , {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then(
           axios.spread((...responses) => {
             return responses;

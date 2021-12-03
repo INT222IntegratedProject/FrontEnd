@@ -206,7 +206,11 @@ export default {
     },
     fetchFemaleProduct() {
       axios
-        .get(this.urlFemale)
+        .get(this.urlFemale , {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((res) => {
           this.allFemaleProduct = res.data;
           console.log(this.allFemaleProduct);

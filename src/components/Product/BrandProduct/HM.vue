@@ -201,7 +201,11 @@ export default {
     },
     fetchHmProduct() {
       axios
-        .get(this.urlHM)
+        .get(this.urlHM , {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((res) => {
           this.allHmProduct = res.data;
           console.log(this.allHmProduct);

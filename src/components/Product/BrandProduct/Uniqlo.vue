@@ -201,7 +201,11 @@ export default {
     },
     fetchUniqloProduct() {
       axios
-        .get(this.urlUniqlo)
+        .get(this.urlUniqlo , {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")} `,
+          },
+        })
         .then((res) => {
           this.allUniqloProduct = res.data;
           console.log(this.allUniqloProduct);
