@@ -265,7 +265,7 @@ export default {
       await localStorage.removeItem("user");
             localStorage.removeItem("token");
             localStorage.removeItem("userid");
-       window.location.href = "/login";
+       window.location.href = "/";
     },
   },
   
