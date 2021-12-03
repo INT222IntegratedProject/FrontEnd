@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-gray-100 fixed inset-x-0 z-20">
+  <nav class="bg-gray-100 fixed inset-x-0 z-10">
     <div class="max-w-6xl mx-auto px-4">
       <div class="flex justify-between">
         <div class="flex space-x-4">
@@ -88,7 +88,7 @@
           {{ user.userName }}
           <div class="w3-dropdown-hover">
             <button
-              @click="dropdownOpen = !dropdownOpen"
+              @click="toggleDropdown()"
               class="relative z-10 block rounded-md p-2 focus:outline-none"
             >
               <svg
@@ -179,8 +179,8 @@
         </div>
 
         <!-- mobile button goes here -->
-        <div class="md:hidden xl:hidden flex items-center">
-          <button class="mobile-menu-button">
+        <div  class="md:hidden xl:hidden flex items-center">
+          <button @click="toggleDropdown()" class="mobile-menu-button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6 hover:text-gray-200"
@@ -200,7 +200,7 @@
       </div>
     </div>
     <!-- mobile menu -->
-    <div class="mobile-menu hidden mobile">
+    <div v-if="dropdown" class="mobile-menu mobile">
       {{ user.userName }}
       <a href="/product" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >Store</a
@@ -248,6 +248,7 @@ export default {
         enableVisitor: true,
       },
       user: {},
+      dropdown:false,
     };
   },
   methods: {
@@ -261,6 +262,10 @@ export default {
         });
       });
     },
+    toggleDropdown(){
+      this.dropdown = !this.dropdown;
+    }
+    ,
     async logout() {
       await localStorage.removeItem("user");
             localStorage.removeItem("token");
