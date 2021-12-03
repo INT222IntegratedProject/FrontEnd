@@ -1,10 +1,6 @@
 pipeline {
     agent any
     
-    tools {
-        nodejs "nodejs"
-    }
-    
     stages {
 
         stage('stop then remove container and image') {
@@ -18,7 +14,7 @@ pipeline {
                            sh 'docker rm frontend'
                            sh 'docker image rm frontend'
                     }else {
-                        echo 'Skip this stage '
+                        echo 'skip to next stage'
                     }
                 }
             }
@@ -38,18 +34,9 @@ pipeline {
             }
         }
 
-        stage('start contianer') {
+        stage('start the contianer') {
             steps {
                 sh 'docker-compose up -d'
-            }
-        }
-        
-        stage('Test') {
-            steps {
-                sh 'node --version '
-                sh 'npm --version '
-                sh 'npm install -g newman'
-                sh 'newman run https://www.getpostman.com/collections/a2c2eae56c1a211ad4e0'
             }
         }
 
