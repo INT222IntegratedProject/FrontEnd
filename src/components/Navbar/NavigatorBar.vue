@@ -158,7 +158,7 @@
                   hover:bg-blue-500 hover:text-white
                 "
               >
-                Sign Out
+                Logout
               </a>
             </div>
           </div>
@@ -186,7 +186,7 @@
       </div>
     </div>
     <!-- mobile menu -->
-    <div v-if="dropdown" class="mobile-menu mobile">
+    <div v-if="dropdown" class="mobile-menu mobile md:hidden text-bold text-md">
       {{ user.userName }}
       <a href="/product" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >Store</a
@@ -203,6 +203,12 @@
       <a href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >Edit User</a
       >
+      <a href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200"
+        >Edit Profile</a
+      >
+      <a href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200"
+        >Add Product</a
+      ><br>
        <a @click="logout()" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >Logout</a
       >

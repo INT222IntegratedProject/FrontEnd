@@ -22,6 +22,7 @@ export default {
     return {
       productData: [],
       urlProduct: "https://walkincloset.ddns.net/backend/Products/GetProducts",
+      urlGetColor: "https://walkincloset.ddns.net/backend/Colors/GetColors",
       allColors: [],
     };
   },
@@ -33,12 +34,12 @@ export default {
     // ColorBlock,
   },
   async created() {
-    this.fetchProduct();
-    this.allColors = await this.fetchColors();
+    await this.fetchProduct();
+    await this.fetchColors();
   },
   methods: {
-    fetchProduct() {
-      axios
+    async fetchProduct() {
+      await axios
         .get(this.urlProduct, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")} `,
@@ -53,18 +54,20 @@ export default {
           console.error(err);
         });
     },
-    async fetchColors() {
-      const res = await fetch(
-        "https://walkincloset.ddns.net/backend/Colors/GetColors",
-        {
+    async fetchColor() {
+      await axios
+        .get(this.urlGetColor, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")} `,
           },
-        }
-      );
-      const data = await res.json();
-      console.log(data);
-      return data;
+        })
+        .then((res) => {
+          this.allColors = res.data;
+          return res.data;
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     },
     emitShow(product) {
       this.$router.push({ name: "Modal", params: { id: product } });
