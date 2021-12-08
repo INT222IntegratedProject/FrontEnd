@@ -201,13 +201,13 @@
       <a href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >About Us</a
       >
-      <a v-if="Admin" href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200"
+      <a v-if="Admin" href="/edituser" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >Edit User</a
       >
       <a href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >Edit Profile</a
       >
-      <a href="/edituser" class="block py-2 px-4 text-sm hover:bg-gray-200"
+      <a href="/addproduct" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >Add Product</a
       ><br>
        <a @click="logout()" class="block py-2 px-4 text-sm hover:bg-gray-200"
