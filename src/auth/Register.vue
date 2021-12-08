@@ -373,7 +373,7 @@
           <div class="text-center">
             <span> Already have an account? </span>
             <a
-              href="/login"
+              href="/"
               class="
                 Barlow-Medium
                 text-md text-indigo-600
@@ -456,7 +456,7 @@ export default {
           return response.data;
         })
         .then(() => {
-          window.location.href = "/login";
+          window.location.href = "/";
         });
     },
     validatingUsername() {
