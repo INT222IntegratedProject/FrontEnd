@@ -323,7 +323,8 @@
               <input
                 @blur="validatingTel"
                 v-model="registerUser.userTel"
-                type="text"
+                type="tel"
+                pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
                 placeholder="tel"
                 class="input input-sm input-bordered"
               />
