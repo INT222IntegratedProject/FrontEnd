@@ -119,6 +119,7 @@
                 edit profile
               </a>
                <a
+                v-if="Admin"
                 href="/userlist"
                 class="
                   block
@@ -200,7 +201,7 @@
       <a href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >About Us</a
       >
-      <a href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200"
+      <a v-if="Admin" href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200"
         >Edit User</a
       >
       <a href="/about" class="block py-2 px-4 text-sm hover:bg-gray-200"
@@ -241,6 +242,7 @@ export default {
       },
       user: {},
       dropdown:false,
+      Admin:false
     };
   },
   methods: {
@@ -256,6 +258,11 @@ export default {
     },
     toggleDropdown(){
       this.dropdown = !this.dropdown;
+    },
+    checkAdmin(){
+      if(this.user.roleId.roleName==="Admin"){
+        this.Admin =true
+      }
     }
     ,
     async logout() {
@@ -269,6 +276,7 @@ export default {
   created() {
     this.user = JSON.parse(localStorage.getItem("user"));
     console.log(this.user);
+    this.checkAdmin();
   },
 
   watch: {
@@ -282,3 +290,4 @@ export default {
   },
 };
 </script>
+
