@@ -119,12 +119,13 @@
 
         <!-- Column -->
         <tbody
+          
           class="bg-white "
           v-for="user in allUserData"
           :key="user.id"
           :product="user"
         >
-          <tr>
+          <tr v-if="admin">
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
               <div class="flex items-center">
                 <div>
@@ -294,11 +295,16 @@ export default {
     return {
       allUserData: [],
       showModal: false,
+      user: {},
+      admin:false
     };
   },
   async created() {
     await this.fetchUsers();
     console.log(this.allUserData);
+    this.user = JSON.parse(localStorage.getItem("user"));
+    console.log(this.user.roleId.roleName)
+    this.checkAdmin();
   },
   methods: {
     async fetchUsers() {
@@ -317,6 +323,12 @@ export default {
           console.error(err);
         });
     },
+    checkAdmin(){
+      if(this.user.roleId.roleName === "Admin"){
+        this.admin =true
+      }
+    }
+    ,
     deleteUser(userid) {
       if (confirm("Do you want to delete this user?") === false) {
         return;
