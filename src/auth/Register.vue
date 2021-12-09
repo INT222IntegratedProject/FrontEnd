@@ -438,7 +438,7 @@ export default {
           roleName: "Member",
         },
       },
-      urlRegister: "https://demodevops222.ddns.net/backend/Users/Create",
+      urlRegister: "https://walkincloset.ddns.net/backend/Users/Create",
 
       invalidUsername: false,
       invalidPassword: false,
