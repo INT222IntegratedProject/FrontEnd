@@ -138,20 +138,20 @@ const routes = [{
     name: 'UserList',
     component: () =>
         import('../views/Users/Userlist.vue'),
-    // beforeEnter: (to, from, next) => {
-    //     let user = JSON.parse(localStorage.getItem("user"))
-    //     if (user != null) {
-    //         if (user.roleId.roleName == 'admin') {
-    //             return next({
-    //                 name: 'login'
-    //             })
-    //         }
-    //     }else{
-    //          next()
-    //     }
+    beforeEnter: (to, from, next) => {
+        let user = JSON.parse(localStorage.getItem("user"))
+        if (user != null) {
+            if (user.roleId.roleName == 'admin') {
+                return next({
+                    name: 'login'
+                })
+            }
+        }else{
+             next()
+        }
 
        
-    // }
+    }
 },
 {
     path: '/edituser',
